@@ -64,5 +64,21 @@ module.exports = {
     cssSrc: dest + '/*.css',
     jsSrc: dest + '/*.js',
     dest: dest
+  },
+  svgSprite: {
+    "mode": {
+      "css": {
+        "prefix": ".i-%s",
+        "common": "i",
+        "dimensions": "-s",
+        "sprite": "../images/sprite.svg",
+        "render": {
+          "scss": {
+            "template": "./svg-tmpl/_sprite.scss",
+            "dest": "../scss/_sprite.scss"
+          }
+        }
+      }
+    }
   }
 };

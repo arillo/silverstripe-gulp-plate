@@ -1,0 +1,1 @@
+<p>&copy; $Now.Year $SiteConfig.Title</p>
