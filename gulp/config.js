@@ -1,5 +1,16 @@
-var dest = "./build";
+var path = require('path');
+var gulp = require('gulp');
+
+function distName() {
+  var folder = path.dirname(__dirname);
+  folder = path.basename(folder);
+  return folder.replace('_source', '');
+}
+
+var folderName = distName()
+var dest = "./../"+ folderName;
 var src = './src';
+
 
 module.exports = {
   browserSync: {
@@ -8,43 +19,32 @@ module.exports = {
       baseDir: dest
     }
   },
+
   sass: {
     src: src + "/sass/**/*.{sass,scss}",
-    dest: dest,
+    dest: dest + '/css',
     settings: {
       indentedSyntax: true, // Enable .sass syntax!
       imagePath: 'images' // Used by the image-url helper
     }
   },
+
   images: {
     src: src + "/images/**",
     dest: dest + "/images"
   },
+
   markup: {
-    src: src + "/htdocs/**",
-    dest: dest
+    src: src + "/templates/**",
+    dest: dest + "/templates"
   },
-  iconFonts: {
-    name: 'Gulp Starter Icons',
-    src: src + '/icons/*.svg',
-    dest: dest + '/fonts',
-    sassDest: src + '/sass',
-    template: './gulp/tasks/iconFont/template.sass.swig',
-    sassOutputName: '_icons.sass',
-    fontPath: 'fonts',
-    className: 'icon',
-    options: {
-      fontName: 'Post-Creator-Icons',
-      appendCodepoints: true,
-      normalize: false
-    }
-  },
+
   browserify: {
     // A separate bundle will be generated for each
     // bundle config in the list below
     bundleConfigs: [{
       entries: src + '/javascript/global.coffee',
-      dest: dest,
+      dest: dest + '/js',
       outputName: 'global.js',
       // Additional file extentions to make optional
       extensions: ['.coffee', '.hbs'],
@@ -54,28 +54,34 @@ module.exports = {
       // why this is 'backbone/node_modules/underscore' and not 'underscore'
     }, {
       entries: src + '/javascript/page.js',
-      dest: dest,
+      dest: dest + 'js',
       outputName: 'page.js',
       // list of externally available modules to exclude from the bundle
       external: ['jquery', 'underscore']
     }]
   },
+
   production: {
-    cssSrc: dest + '/*.css',
-    jsSrc: dest + '/*.js',
+    cssSrc: dest + '/css/*.css',
+    jsSrc: dest + '/js/*.js',
     dest: dest
   },
+
   svgSprite: {
-    "mode": {
-      "css": {
-        "prefix": ".i-%s",
-        "common": "i",
-        "dimensions": "-s",
-        "sprite": "../images/sprite.svg",
-        "render": {
-          "scss": {
-            "template": "./svg-tmpl/_sprite.scss",
-            "dest": "../scss/_sprite.scss"
+    src: src + '/icons/*.svg',
+    dest: './',
+    options : {
+      mode: {
+        css: {
+          prefix: ".i-%s",
+          common: "i",
+          dimensions: "-s",
+          sprite: "../src/images/sprite.svg",
+          render: {
+            scss: {
+              template: "./gulp/tpl/_sprite.scss",
+              dest: "../src/sass/_sprite.scss"
+            }
           }
         }
       }
