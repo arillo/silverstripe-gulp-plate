@@ -6,6 +6,6 @@ var uglify = require('gulp-uglify');
 gulp.task('uglifyJs', ['browserify'], function() {
   return gulp.src(config.jsSrc)
     .pipe(uglify())
-    .pipe(gulp.dest(config.dest))
+    .pipe(gulp.dest(config.jsDest))
     .pipe(size());
 });

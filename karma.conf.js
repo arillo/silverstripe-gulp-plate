@@ -28,7 +28,7 @@ module.exports = function(config) {
 
     browserify: {
         debug: true,
-        extensions: ['.js', '.coffee', '.hbs']
+        extensions: ['.js', '.coffee']
     },
 
     // test results reporter to use
@@ -56,7 +56,7 @@ module.exports = function(config) {
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: false,
-    
+
     // Helps to address an issue on TravisCI where activity can time out
     browserNoActivityTimeout: 30000
 

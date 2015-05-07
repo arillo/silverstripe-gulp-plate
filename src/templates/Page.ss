@@ -22,12 +22,16 @@
   <body data-page="<% if $Template %>$Template<% else %>$TemplateClassName<% end_if %>">
     <div class="l-wrap">
       <% include Header %>
-      $Layout
+      <div class="g-row">
+        <div class="g g-lg-12 test">
+          $Layout
+        </div>
+      </div>
       <% include Footer %>
     </div>
     $SiteConfig.GoogleAnalytics
     <% include DesignHelper %>
-    <script src="$ThemeDir/dist/js/main.js"></script>
+    <script src="$ThemeDir/js/main.js"></script>
   </body>
 
 </html>

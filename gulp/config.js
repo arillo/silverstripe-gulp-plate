@@ -14,10 +14,9 @@ var src = './src';
 
 module.exports = {
   browserSync: {
-    server: {
-      // Serve up our build folder
-      baseDir: dest
-    }
+    proxy: 'http://arillo.dev/clean-test',
+    port: 9000,
+    notify: false
   },
 
   sass: {
@@ -43,28 +42,31 @@ module.exports = {
     // A separate bundle will be generated for each
     // bundle config in the list below
     bundleConfigs: [{
-      entries: src + '/javascript/global.coffee',
+      entries: src + '/javascript/main.coffee',
       dest: dest + '/js',
-      outputName: 'global.js',
+      outputName: 'main.js',
       // Additional file extentions to make optional
-      extensions: ['.coffee', '.hbs'],
+      extensions: ['.coffee'],
       // list of modules to make require-able externally
-      require: ['jquery', 'backbone/node_modules/underscore']
+      require: ['jquery']
+      // old: require: ['jquery', 'backbone/node_modules/underscore']
       // See https://github.com/greypants/gulp-starter/issues/87 for note about
       // why this is 'backbone/node_modules/underscore' and not 'underscore'
-    }, {
-      entries: src + '/javascript/page.js',
-      dest: dest + 'js',
-      outputName: 'page.js',
-      // list of externally available modules to exclude from the bundle
-      external: ['jquery', 'underscore']
+    // }, {
+    //   entries: src + '/javascript/page.js',
+    //   dest: dest + '/js',
+    //   outputName: 'page.js',
+    //   // list of externally available modules to exclude from the bundle
+    //   external: ['jquery', 'underscore']
     }]
   },
 
   production: {
     cssSrc: dest + '/css/*.css',
     jsSrc: dest + '/js/*.js',
-    dest: dest
+    dest: dest,
+    cssDest: dest + '/css',
+    jsDest: dest + '/js'
   },
 
   svgSprite: {

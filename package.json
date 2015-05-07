@@ -4,7 +4,7 @@
   "description": "Gulp starter with common tasks and scenarios",
   "repository": {
     "type": "git",
-    "url": "git://github.com/greypants/gulp-starter.git"
+    "url": "git://github.com/arillo/gulp-starter.git"
   },
   "//": [
     "The following 'underscore' example demonstrates exposing a module included ",
@@ -23,8 +23,7 @@
   "browserify": {
     "transform": [
       "browserify-shim",
-      "coffeeify",
-      "hbsfy"
+      "coffeeify"
     ]
   },
   "browserify-shim": {
@@ -45,7 +44,6 @@
     "gulp-autoprefixer": "^2.1.0",
     "gulp-changed": "^1.1.1",
     "gulp-filesize": "0.0.6",
-    "gulp-iconfont": "^1.0.0",
     "gulp-imagemin": "^2.2.1",
     "gulp-minify-css": "~0.5.1",
     "gulp-notify": "^2.2.0",
@@ -53,7 +51,6 @@
     "gulp-sass": "~1.3.3",
     "gulp-sourcemaps": "^1.5.0",
     "gulp-svg-sprite": "^1.1.2",
-    "gulp-swig": "^0.7.4",
     "gulp-uglify": "^1.1.0",
     "gulp-util": "^3.0.4",
     "handlebars": "^3.0.0",
@@ -75,7 +72,6 @@
     "watchify": "^2.4.0"
   },
   "dependencies": {
-    "backbone": "~1.1.2",
     "jquery": "~2.1.0"
   }
 }

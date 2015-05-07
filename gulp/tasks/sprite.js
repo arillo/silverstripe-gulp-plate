@@ -9,12 +9,12 @@ gulp.task('sprite:clean', function(cb){
   del([config.dest + '/src/images/sprite-*.svg'], {dot: true}, cb);
 });
 
-gulp.task('sprite', ['sprite:clean'], function (){
+gulp.task('sprite', ['sprite:clean'], function (cb){
 
-  var sprite = gulp.src(config.src)
+  gulp.src(config.src)
     .pipe(svgSprite(config.options))
-    .on('error', handleErrors)
+    .on('error', function(error){ console.log(error); })
     .pipe(gulp.dest(config.dest));
 
-  return sprite;
+  cb();
 });

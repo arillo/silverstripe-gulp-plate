@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var runSequence = require('run-sequence');
 
-gulp.task('default', ['sprite'], function(){
-  runSequence(['sass', 'images', 'markup']);
+gulp.task('default', function(cb){
+  runSequence('sprite',['sass', 'images', 'markup', 'browserify'], cb);
 });
