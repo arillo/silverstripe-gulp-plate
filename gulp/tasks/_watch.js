@@ -14,7 +14,7 @@ gulp.task('watch', ['clean'], function() {
   runSequence('default', ['watchify','browserSync']);
 
   watch(config.svgSprite.src, function(){
-    runSequence('sprite', 'images', browserSync.reload);
+    runSequence('sprite:cleanDest','sprite', 'images', browserSync.reload);
   });
 
   // gulp.watch(config.svgSprite.src,  ['sprite', browserSync.reload]);
