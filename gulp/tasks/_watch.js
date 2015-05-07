@@ -7,12 +7,17 @@ var gulp     = require('gulp');
 var config   = require('../config');
 var browserSync   = require('browser-sync');
 var runSequence = require('run-sequence');
+var watch = require('gulp-watch');
 
-gulp.task('watch', function() {
 
+gulp.task('watch', ['clean'], function() {
   runSequence('default', ['watchify','browserSync']);
 
-  gulp.watch(config.svgSprite.src,  ['sprite']);
+  watch(config.svgSprite.src, function(){
+    runSequence('sprite', 'images', browserSync.reload);
+  });
+
+  // gulp.watch(config.svgSprite.src,  ['sprite', browserSync.reload]);
   gulp.watch(config.sass.src,       ['sass']);
   gulp.watch(config.images.src,     ['images', browserSync.reload]);
   gulp.watch(config.markup.src,     ['markup', browserSync.reload]);

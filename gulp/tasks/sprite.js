@@ -10,11 +10,8 @@ gulp.task('sprite:clean', function(cb){
 });
 
 gulp.task('sprite', ['sprite:clean'], function (cb){
-
-  gulp.src(config.src)
+  return gulp.src(config.src)
     .pipe(svgSprite(config.options))
     .on('error', function(error){ console.log(error); })
     .pipe(gulp.dest(config.dest));
-
-  cb();
 });

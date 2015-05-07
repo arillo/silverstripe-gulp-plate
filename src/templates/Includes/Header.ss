@@ -1,3 +1,5 @@
+
+<div class="header">
 <p>$SiteConfig.Title</p>
 
 <ul>
@@ -15,3 +17,4 @@
     <% end_loop %>
   </ul>
 <% end_if %>
+</div>

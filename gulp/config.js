@@ -13,6 +13,8 @@ var src = './src';
 
 
 module.exports = {
+  destFolder: dest,
+
   browserSync: {
     proxy: 'http://arillo.dev/clean-test',
     port: 9000,

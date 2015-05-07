@@ -53,6 +53,7 @@
     "gulp-svg-sprite": "^1.1.2",
     "gulp-uglify": "^1.1.0",
     "gulp-util": "^3.0.4",
+    "gulp-watch": "^4.2.4",
     "handlebars": "^3.0.0",
     "hbsfy": "~2.2.1",
     "karma": "^0.12.31",

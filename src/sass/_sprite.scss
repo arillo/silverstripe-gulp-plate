@@ -11,17 +11,17 @@
 
 
 $i-map: (
-  i-map-path: url("../src/images/sprite-b48913a4.svg"),
+  i-map-path: url("../src/images/sprite-e3b8ff54.svg"),
   i-map-width: 64px,
   i-map-height: 64px,
 
-  i-facebook-width: 32px,
-  i-facebook-height: 32px,
-  i-facebook-position: 0 0,
+  i-facebooks-width: 32px,
+  i-facebooks-height: 32px,
+  i-facebooks-position: 0 0,
 
-  i-linkedin-width: 32px,
-  i-linkedin-height: 32px,
-  i-linkedin-position: -32px 0,
+  i-linked-width: 32px,
+  i-linked-height: 32px,
+  i-linked-position: -32px 0,
 
   i-pinterest-width: 32px,
   i-pinterest-height: 32px,
@@ -46,7 +46,7 @@ $i-map: (
 }
 
 %i {
-  background-image: url("../src/images/sprite-b48913a4.svg");
+  background-image: url("../src/images/sprite-e3b8ff54.svg");
 }
 
 @mixin extend-i-url($extend: true) {
@@ -68,7 +68,7 @@ $i-map: (
 // Mixins & classes
 //===========================================
 
-@mixin i-facebook($add-style: true, $add-url: true) {
+@mixin i-facebooks($add-style: true, $add-url: true) {
   @include i($add-style);
   @include extend-i-url($add-url);
   background-position: 0 0;
@@ -76,12 +76,12 @@ $i-map: (
   height: 32px;
 }
 
-.i-facebook {
-  @include i-facebook(false, false);
+.i-facebooks {
+  @include i-facebooks(false, false);
 }
 
 
-@mixin i-linkedin($add-style: true, $add-url: true) {
+@mixin i-linked($add-style: true, $add-url: true) {
   @include i($add-style);
   @include extend-i-url($add-url);
   background-position: -32px 0;
@@ -89,8 +89,8 @@ $i-map: (
   height: 32px;
 }
 
-.i-linkedin {
-  @include i-linkedin(false, false);
+.i-linked {
+  @include i-linked(false, false);
 }
 
 
