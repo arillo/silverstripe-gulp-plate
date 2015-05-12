@@ -36,7 +36,9 @@
     // Get config
     $name:    map-get($config, "name")
     $cols:    map-get($config, "cols")
-    $gutter:  map-get($config, "gutter")
+    $gutter-lft:  ceil(map-get($config, "gutter") / 2)
+    $gutter-rgt:  floor(map-get($config, "gutter") / 2)
+
 
     // Base unit
     $base: (100%/$cols)
@@ -45,13 +47,13 @@
 
       // Update row
       .g-row
-        margin-left: -$gutter
-        margin-right: -$gutter
+        margin-left: -$gutter-lft
+        margin-right: -$gutter-rgt
 
       // Update unit
       .g
-        padding-left: $gutter
-        padding-right: $gutter
+        padding-left: $gutter-lft
+        padding-right: $gutter-rgt
 
       // Units
       @for $i from 1 through $cols
@@ -59,7 +61,7 @@
           width: $base * $i
 
       // Helpers
-      +grid-helper($config, "off", padding-left, 0)
+      +grid-helper($config, "off", margin-left, 0)
       +grid-helper($config, "pull", right, auto)
       +grid-helper($config, "push", left, auto)
 
@@ -74,7 +76,7 @@
 
   @if map-get($config, $type)
     .g-#{$name}-#{$type}-0
-      #{$prop}: $val0;
+      #{$prop}: $val0
 
     @for $i from 1 to $cols
       .g-#{$name}-#{$type}-#{$i}
