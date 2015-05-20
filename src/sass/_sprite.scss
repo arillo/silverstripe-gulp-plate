@@ -11,9 +11,9 @@
 
 
 $i-map: (
-  i-map-path: url("../src/images/sprite-b48913a4.svg"),
-  i-map-width: 64px,
-  i-map-height: 64px,
+  i-map-path: url("../images/sprite-b36cfbb3.svg"),
+  i-map-width: 128px,
+  i-map-height: 32px,
 
   i-facebook-width: 32px,
   i-facebook-height: 32px,
@@ -25,11 +25,11 @@ $i-map: (
 
   i-pinterest-width: 32px,
   i-pinterest-height: 32px,
-  i-pinterest-position: 0 -32px,
+  i-pinterest-position: -64px 0,
 
   i-twitter-width: 32px,
   i-twitter-height: 32px,
-  i-twitter-position: -32px -32px
+  i-twitter-position: -96px 0
 );
 
 
@@ -46,7 +46,7 @@ $i-map: (
 }
 
 %i {
-  background-image: url("../src/images/sprite-b48913a4.svg");
+  background-image: url("../images/sprite-b36cfbb3.svg");
 }
 
 @mixin extend-i-url($extend: true) {
@@ -97,7 +97,7 @@ $i-map: (
 @mixin i-pinterest($add-style: true, $add-url: true) {
   @include i($add-style);
   @include extend-i-url($add-url);
-  background-position: 0 -32px;
+  background-position: -64px 0;
   width: 32px;
   height: 32px;
 }
@@ -110,7 +110,7 @@ $i-map: (
 @mixin i-twitter($add-style: true, $add-url: true) {
   @include i($add-style);
   @include extend-i-url($add-url);
-  background-position: -32px -32px;
+  background-position: -96px 0;
   width: 32px;
   height: 32px;
 }

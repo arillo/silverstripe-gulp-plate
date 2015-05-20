@@ -13,13 +13,20 @@ var watch = require('gulp-watch');
 gulp.task('watch', ['clean'], function() {
   runSequence('default', ['watchify','browserSync']);
 
-  watch(config.svgSprite.src, function(){
-    runSequence('sprite:cleanDest','sprite', 'images', browserSync.reload);
+  watch(config.svgSprite.src + '/' + config.svgSprite.glob, function(){
+    runSequence('sprite', browserSync.reload);
   });
 
-  // gulp.watch(config.svgSprite.src,  ['sprite', browserSync.reload]);
-  gulp.watch(config.sass.src,       ['sass']);
-  gulp.watch(config.images.src,     ['images', browserSync.reload]);
-  gulp.watch(config.markup.src,     ['markup', browserSync.reload]);
+  watch(config.sass.src, function(){
+    runSequence('sass');
+  });
+
+  watch(config.images.src, function(){
+    runSequence('images', browserSync.reload);
+  });
+
+  watch([config.markup.src, config.markup.partialsSrc], function(){
+    runSequence('markup', browserSync.reload);
+  });
   // Watchify will watch and recompile our JS, so no need to gulp.watch it
 });

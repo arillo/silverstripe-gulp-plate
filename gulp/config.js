@@ -24,6 +24,17 @@ module.exports = {
   sass: {
     src: src + "/sass/**/*.{sass,scss}",
     dest: dest + '/css',
+    prefix: [
+      'ie >= 9',
+      'ie_mob >= 10',
+      'ff >= 30',
+      'chrome >= 34',
+      'safari >= 7',
+      'opera >= 23',
+      'ios >= 7',
+      'android >= 4.4',
+      'bb >= 10'
+    ],
     settings: {
       indentedSyntax: true, // Enable .sass syntax!
       imagePath: 'images' // Used by the image-url helper
@@ -71,23 +82,50 @@ module.exports = {
     jsDest: dest + '/js'
   },
 
+  // svgSprite: {
+  //   src: src + '/icons/*.svg',
+  //   dest: './',
+  //   options : {
+  //     mode: {
+  //       css: {
+  //         prefix: ".i-%s",
+  //         common: "i",
+  //         dimensions: "-s",
+  //         sprite: "../src/images/sprite.svg",
+  //         render: {
+  //           scss: {
+  //             template: "./gulp/tpl/_sprite.scss",
+  //             dest: "../src/sass/_sprite.scss"
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+
   svgSprite: {
-    src: src + '/icons/*.svg',
-    dest: './',
+    src: src + '/icons',
+    glob: '**/*.svg',
+    dest: dest + '/images',
     options : {
       mode: {
         css: {
+          layout: "horizontal",
           prefix: ".i-%s",
           common: "i",
           dimensions: "-s",
-          sprite: "../src/images/sprite.svg",
+          sprite: "sprite.svg",
+          dest: '.',
           render: {
             scss: {
-              template: "./gulp/tpl/_sprite.scss",
-              dest: "../src/sass/_sprite.scss"
+              template: "gulp/tpl/_sprite.scss",
+              dest: "../../"+folderName+"_source/src/sass/_sprite.scss"
             }
           }
         }
+      },
+      variables: {
+        cssPath: "../images/"
       }
     }
   }
