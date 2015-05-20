@@ -3,6 +3,33 @@
 //============================================
 
 
+// Colors
+//============================================
+
+$primary: #00f;
+$black: #111;
+$gray-light: #999;
+
+$color-text: $black;
+$color-bg: white;
+
+
+// Dimensions
+//============================================
+
+$space: 24px;
+$space-half: $space / 2;
+
+
+// Typography
+//============================================
+
+$font: "Helvetica Neue", Arial, sans-serif;
+$font-mono: monospace, monospace;
+$fs: 16px;
+$lh: ($space / $fs);
+
+
 // Layout
 //============================================
 
@@ -40,7 +67,7 @@ $bp-md-max:   "(max-width: #{($layout-width-lg + ($layout-gutter-lg * 2)) - 1px}
 // Grid
 //============================================
 
-$grid-columns: 12;
+$grid-columns: 24;
 
 $grid-config-xs: (
   "name": "xs",

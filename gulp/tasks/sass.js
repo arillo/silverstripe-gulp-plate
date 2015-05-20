@@ -5,6 +5,7 @@ var sourcemaps   = require('gulp-sourcemaps');
 var handleErrors = require('../util/handleErrors');
 var config       = require('../config').sass;
 var autoprefixer = require('gulp-autoprefixer');
+var importCss    = require('gulp-import-css');
 
 gulp.task('sass', function () {
   return gulp.src(config.src)
@@ -13,6 +14,7 @@ gulp.task('sass', function () {
     .on('error', handleErrors)
     .pipe(sourcemaps.write())
     .pipe(autoprefixer({ browsers: config.prefix }))
+    .pipe(importCss())
     .pipe(gulp.dest(config.dest))
     .pipe(browserSync.reload({stream:true}));
 });

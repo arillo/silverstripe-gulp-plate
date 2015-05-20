@@ -51,11 +51,16 @@ module.exports = {
     dest: dest + "/templates"
   },
 
+  jslint: {
+    srcJs: [src + "/js/**/*.js", "!" +src + "/js/vendor/**"],
+    srcCoffee: [src + "/js/**/*.coffee", "!" +src + "/js/vendor/**"]
+  },
+
   browserify: {
     // A separate bundle will be generated for each
     // bundle config in the list below
     bundleConfigs: [{
-      entries: src + '/javascript/main.coffee',
+      entries: src + '/js/main.coffee',
       dest: dest + '/js',
       outputName: 'main.js',
       // Additional file extentions to make optional
@@ -66,7 +71,7 @@ module.exports = {
       // See https://github.com/greypants/gulp-starter/issues/87 for note about
       // why this is 'backbone/node_modules/underscore' and not 'underscore'
     // }, {
-    //   entries: src + '/javascript/page.js',
+    //   entries: src + '/js/page.js',
     //   dest: dest + '/js',
     //   outputName: 'page.js',
     //   // list of externally available modules to exclude from the bundle
@@ -81,27 +86,6 @@ module.exports = {
     cssDest: dest + '/css',
     jsDest: dest + '/js'
   },
-
-  // svgSprite: {
-  //   src: src + '/icons/*.svg',
-  //   dest: './',
-  //   options : {
-  //     mode: {
-  //       css: {
-  //         prefix: ".i-%s",
-  //         common: "i",
-  //         dimensions: "-s",
-  //         sprite: "../src/images/sprite.svg",
-  //         render: {
-  //           scss: {
-  //             template: "./gulp/tpl/_sprite.scss",
-  //             dest: "../src/sass/_sprite.scss"
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
 
   svgSprite: {
     src: src + '/icons',

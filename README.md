@@ -119,3 +119,13 @@ Want to just run `karma start`? Either add `alias karma="./node_modules/karma/bi
 Social icons courtesy of [icomoon.io](https://icomoon.io/#icons-icomoon)</small>
 
 Made with ♥ at [Viget](http://viget.com)!
+
+
+
+
+
+
+# Issues
+
+- sass sourcemaps not working properly
+- no great sass & scss linter available, promising: https://github.com/sasstools/sass-lint

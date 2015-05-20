@@ -4,5 +4,5 @@
 $ = require 'jquery'
 plugin  = require 'plugin'
 
-console.log 'global.js loaded!'
+console.log    'global.js loaded!'
 plugin()
