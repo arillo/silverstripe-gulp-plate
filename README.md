@@ -24,6 +24,14 @@ $ brew install node
 
 Otherwise, you can download and install from [here](http://nodejs.org/download/).
 
+Install Gulp globally:
+
+```
+$ npm install -g gulp
+```
+
+After the setup:
+
 ```
 $ cd to project
 $ npm install
