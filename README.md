@@ -18,7 +18,7 @@ Includes the following tools, tasks, and workflows:
 
 Install Node. If you use homebrew, do:
 
-```
+```bash
 $ brew install node
 ```
 
