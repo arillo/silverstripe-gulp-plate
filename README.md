@@ -129,3 +129,4 @@ Made with ♥ at [Viget](http://viget.com)!
 
 - sass sourcemaps not working properly
 - no great sass & scss linter available, promising: https://github.com/sasstools/sass-lint
+- .coffeeelintignore seems not to be working so only js directory is looked at

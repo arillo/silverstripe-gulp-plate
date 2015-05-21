@@ -1,5 +1,6 @@
+'use strict';
+
 var path = require('path');
-var gulp = require('gulp');
 
 function distName() {
   var folder = path.dirname(__dirname);
@@ -7,8 +8,8 @@ function distName() {
   return folder.replace('_source', '');
 }
 
-var folderName = distName()
-var dest = "./../"+ folderName;
+var folderName = distName();
+var dest = './../'+ folderName;
 var src = './src';
 
 
@@ -22,7 +23,7 @@ module.exports = {
   },
 
   sass: {
-    src: src + "/sass/**/*.{sass,scss}",
+    src: src + '/sass/**/*.{sass,scss}',
     dest: dest + '/css',
     prefix: [
       'ie >= 9',
@@ -42,18 +43,18 @@ module.exports = {
   },
 
   images: {
-    src: src + "/images/**",
-    dest: dest + "/images"
+    src: src + '/images/**',
+    dest: dest + '/images'
   },
 
   markup: {
-    src: src + "/templates/**",
-    dest: dest + "/templates"
+    src: src + '/templates/**',
+    dest: dest + '/templates'
   },
 
   jslint: {
-    srcJs: [src + "/js/**/*.js", "!" +src + "/js/vendor/**"],
-    srcCoffee: [src + "/js/**/*.coffee", "!" +src + "/js/vendor/**"]
+    srcJs: './**/*.js',
+    srcCoffee: src + '/js/**/*.coffee'
   },
 
   browserify: {
@@ -94,22 +95,22 @@ module.exports = {
     options : {
       mode: {
         css: {
-          layout: "horizontal",
-          prefix: ".i-%s",
-          common: "i",
-          dimensions: "-s",
-          sprite: "sprite.svg",
+          layout: 'horizontal',
+          prefix: '.i-%s',
+          common: 'i',
+          dimensions: '-s',
+          sprite: 'sprite.svg',
           dest: '.',
           render: {
             scss: {
-              template: "gulp/tpl/_sprite.scss",
-              dest: "../../"+folderName+"_source/src/sass/_sprite.scss"
+              template: 'gulp/tpl/_sprite.scss',
+              dest: '../../'+folderName+'_source/src/sass/_sprite.scss'
             }
           }
         }
       },
       variables: {
-        cssPath: "../images/"
+        cssPath: '../images/'
       }
     }
   }

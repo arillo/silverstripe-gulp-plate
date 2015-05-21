@@ -1,9 +1,9 @@
+'use strict';
+
 var gulp = require('gulp');
 var svgSprite = require('gulp-svg-sprite');
 var del = require('del');
 var config  = require('../config').svgSprite;
-var dest  = require('../config').destFolder;
-var handleErrors = require('../util/handleErrors');
 
 // Clean
 gulp.task('sprite:clean', function(cb){
