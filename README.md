@@ -10,9 +10,11 @@ Includes the following tools, tasks, and workflows:
 - [CoffeeScript](http://coffeescript.org/) (with source maps!)
 - [BrowserSync](http://browsersync.io) for live reloading and a static server
 - [Image optimization](https://www.npmjs.com/package/gulp-imagemin)
+- [Javascript linting](http://jshint.com/)
+- [Coffeescript linting](http://www.coffeelint.org/)
 - Error handling in the console [and in Notification Center](https://github.com/mikaelbr/gulp-notify)
 - Shimming non common-js vendor code with other dependencies (like a jQuery plugin)
-- Svg icon sprite generation using [gulp-svg-sprite](https://github.com/jkphl/svg-sprite)
+- Svg icon sprite generation using [gulp-svg-sprite](https://github.com/jkphl/gulp-svg-sprite)
 
 ## Dependencies / Installation
 
