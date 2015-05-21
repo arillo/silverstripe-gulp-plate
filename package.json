@@ -16,14 +16,14 @@
     "The 'plugin' example makes that file requireable with `require('plugin')`,",
     "and available to browserify-shim as 'plugin' on line 30."
   ],
-  "browser": {
-    "plugin": "./src/js/vendor/jquery-plugin.js"
-  },
   "browserify": {
     "transform": [
       "browserify-shim",
       "coffeeify"
     ]
+  },
+  "browser": {
+    "plugin": "./src/js/vendor/jquery-plugin.js"
   },
   "browserify-shim": {
     "plugin": {

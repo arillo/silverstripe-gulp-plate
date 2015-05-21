@@ -87,7 +87,7 @@ myTheme_source/
     templates/  # Silverstripe templates
 ```
 
-Any additional folder to be moved to the production theme needs a new dedicated task e.g. `movefonts` if you would have any.
+Any additional folder to be moved to the production theme needs a new dedicated task e.g. `"moveFonts"` if you would need to move a `fonts/` folder.
 
 ## Include external vendor css files
 
@@ -99,6 +99,59 @@ If you want to include external css files from npm or bower (bower is not setup 
 @import "my-sass-module"
 // will be inlined in the main file:
 @import "../../node_modules/normalize.css/normalize.css"
+```
+
+## Shim a jQuery plugin to work with browserify
+
+```js
+// package.json
+
+{
+...
+  "browser": {
+    // Path to your plugin
+    "plugin": "./src/js/vendor/jquery-plugin.js"
+  },
+  "browserify-shim": {
+    // Shim it and declare dependencies
+    "plugin": {
+      "exports": "plugin",
+      "depends": [
+        "jquery:$"
+      ]
+    }
+  },
+...
+}
+
+// use in main.js
+var plugin = require('plugin');
+
+plugin();
+
+```
+
+## Declare aliases for frequently required files
+
+If you have to require one of your own files a lot you can add it as an alias to `"browser"` in the `package.json` file
+
+```js
+// package.json
+
+{
+...
+  "browser": {
+    // Path to your plugin
+    "myScript": "./src/js/ui/my-script.js"
+  },
+...
+}
+
+// use in main.js
+var myScript = require('myScript');
+// instead of
+var myScript = require('./ui/myScript');
+
 ```
 
 ## JavaScript Tests with Karma
