@@ -73,7 +73,7 @@ myTheme_source/
   gulp/         # all gulp tasks
   src/          # all source files
     icons/      # svg to be combined as a sprite
-    images/     #other images
+    images/     # other images
     js/         # js code, can be coffeescript or plain js (mix is possible)
     sass/       # Sass code, scss and sass syntax possible
     templates/  # Silverstripe templates
