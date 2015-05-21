@@ -1,6 +1,6 @@
 # Silverstripe clean theme
 
-Create a Silverstripe production theme using a gulp.js workflow.
+Create a Silverstripe production theme using a [gulp.js](http://gulpjs.com/) workflow.
 
 Includes the following tools, tasks, and workflows:
 
@@ -66,7 +66,7 @@ Will run the default task once, start a server and watch for file changes.
 $ gulp production
 ```
 
-Will generate a production version of the theme by running the tests and compressing js & css.
+Will generate a production version of the theme by running the tests and compressing js & css. This is the folder that should go on the server.
 
 __Important:__
 
