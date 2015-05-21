@@ -12,7 +12,7 @@ Includes the following tools, tasks, and workflows:
 - [Image optimization](https://www.npmjs.com/package/gulp-imagemin)
 - Error handling in the console [and in Notification Center](https://github.com/mikaelbr/gulp-notify)
 - Shimming non common-js vendor code with other dependencies (like a jQuery plugin)
-- Generate a svg icon sprite using [gulp-svg-sprite](https://github.com/jkphl/svg-sprite)
+- Svg icon sprite generation using [gulp-svg-sprite](https://github.com/jkphl/svg-sprite)
 
 ## Dependencies / Installation
 
@@ -58,6 +58,10 @@ $ gulp production
 
 Will generate a production version of the theme by running the tests and compressing js & css.
 
+__Important:__
+
+Every time you run one of the commands the generated theme will be deleted! Don't make any changes in that directory.
+
 ## Configuration
 
 All paths and plugin settings have been abstracted into a centralized config object in `gulp/config.js`. Adapt the paths and settings to the structure and needs of your project.
@@ -83,8 +87,8 @@ Want to just run `karma start`? Either add `alias karma="./node_modules/karma/bi
 
 
 
-# Issues
+# Known issues
 
-- sass sourcemaps not working properly
-- no great sass & scss linter available, promising: https://github.com/sasstools/sass-lint
-- .coffeeelintignore seems not to be working so only js directory is looked at
+- Sass sourcemaps are not working properly.
+- No great sass & scss linter is available at the time of writing. https://github.com/sasstools/sass-lint looks promising but does not seem finished yet.
+- `.coffeeelintignore` seems not to be working, be aware when changing the path to watch more than your `./src/js` directory.
