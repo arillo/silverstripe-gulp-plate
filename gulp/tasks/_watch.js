@@ -18,6 +18,14 @@ gulp.task('watch', ['clean'], function() {
     runSequence('sprite', browserSync.reload);
   });
 
+  watch(config.jslint.srcJs, function(){
+    runSequence('jshint');
+  });
+
+  watch(config.jslint.srcCoffee, function(){
+    runSequence('coffeelint');
+  });
+
   watch(config.sass.src, function(){
     runSequence('sass');
   });
