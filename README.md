@@ -66,6 +66,33 @@ Every time you run one of the commands the generated theme will be deleted! Don'
 
 All paths and plugin settings have been abstracted into a centralized config object in `gulp/config.js`. Adapt the paths and settings to the structure and needs of your project.
 
+## Folder structure
+
+```bash
+myTheme_source/
+  gulp/         # all gulp tasks
+  src/          # all source files
+    icons/      # svg to be combined as a sprite
+    images/     #other images
+    js/         # js code, can be coffeescript or plain js (mix is possible)
+    sass/       # Sass code, scss and sass syntax possible
+    templates/  # Silverstripe templates
+```
+
+Any additional folder to be moved to the production theme needs a new dedicated task e.g. `movefonts` if you would have any.
+
+## Include external vendor css files
+
+If you want to include external css files from npm or bower (bower is not setup by default but feel free to include it) you can just import them in your sass files as css imports. The gulp `sass` task will take care of pulling the file content into the generated css file.
+
+```sass
+// main.sass
+
+@import "my-sass-module"
+// will be inlined in the main file:
+@import "../../node_modules/normalize.css/normalize.css"
+```
+
 ## JavaScript Tests with Karma
 
 This repo includes a basic js testing setup with the following: [Karma](http://karma-runner.github.io/0.12/index.html), [Mocha](http://mochajs.org/), [Chai](http://chaijs.com/), and [Sinon](http://sinonjs.org/). There is `karma` gulp task, which the `production` task uses to run the tests before compiling. If any tests fail, the `production` task will abort.
@@ -77,18 +104,14 @@ To run the tests and start monitoring files:
 
 Want to just run `karma start`? Either add `alias karma="./node_modules/karma/bin/karma"` to your shell config or install the karma command line interface globally with `npm install -g karma-cli`.
 
+## Known issues
 
-## References
+- Sass sourcemaps are not working properly, the handling of Sass indented syntax seems a little buggy.
+- No great sass & scss linter is available at the time of writing. https://github.com/sasstools/sass-lint looks promising but does not seem finished yet.
+- `.coffeeelintignore` seems not to be working, be aware when changing the path to watch more than your `./src/js` directory.
+
+## References / Credits
 
 - Silverstripe clean theme is based on https://github.com/greypants/gulp-starter
 - Read the [blog post](http://viget.com/extend/gulp-browserify-starter-faq)
 - Check out the [Wiki](https://github.com/greypants/gulp-starter/wiki)
-
-
-
-
-# Known issues
-
-- Sass sourcemaps are not working properly.
-- No great sass & scss linter is available at the time of writing. https://github.com/sasstools/sass-lint looks promising but does not seem finished yet.
-- `.coffeeelintignore` seems not to be working, be aware when changing the path to watch more than your `./src/js` directory.
