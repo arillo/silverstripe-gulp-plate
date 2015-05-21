@@ -53,7 +53,7 @@ module.exports = {
   },
 
   jslint: {
-    srcJs: './**/*.js',
+    srcJs: src + '/js/**/*.js',
     srcCoffee: src + '/js/**/*.coffee'
   },
 
