@@ -1,44 +1,4 @@
 //============================================
-// Mixins
-//============================================
-
-
-// Clearfix
-//============================================
-
-=clearfix
-  &:after,
-  &:before
-    content:""
-    display:table
-
-  &:after
-    clear: both
-
-// Alias
-=cf
-  +clearfix
-
-
-// Respond
-//============================================
-
-=mq($breakpoint, $media: all)
-  @if $breakpoint
-    @media #{$media} and #{$breakpoint}
-      @content
-  @else
-    @content
-
-
-// Size
-//============================================
-
-=size($width, $height: $width)
-  width: $width
-  height: $height
-
-
 // Position
 //============================================
 
@@ -91,17 +51,3 @@
 // Alias
 =pos($amounts, $sides, $pos: absolute, $auto-overwrite: false)
   +position($amounts, $sides, $pos, $auto-overwrite)
-
-
-// Center Absolute
-//============================================
-
-=center($width, $height: $width, $position: false)
-  @if $position
-    +pos(50%, top left, $position)
-  @else
-    +pos(50%, top left)
-
-  +size($width, $height)
-  margin-left: -$width / 2
-  margin-top: -$height / 2

@@ -2,6 +2,7 @@
 /* Notes:
    - gulp/tasks/browserify.js handles js recompiling with watchify
    - gulp/tasks/browserSync.js watches and reloads compiled files
+   - watchers are made using `gulp-watch` so new files are automatically watched
 */
 
 var gulp     = require('gulp');
