@@ -47,6 +47,7 @@
     "gulp-filesize": "0.0.6",
     "gulp-imagemin": "^2.2.1",
     "gulp-import-css": "^0.1.2",
+    "gulp-jscs": "^1.6.0",
     "gulp-jshint": "^1.10.0",
     "gulp-minify-css": "~0.5.1",
     "gulp-notify": "^2.2.0",

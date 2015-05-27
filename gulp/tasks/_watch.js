@@ -19,7 +19,7 @@ gulp.task('watch', ['clean'], function() {
   });
 
   watch(config.jslint.srcJs, function(){
-    runSequence('jshint');
+    runSequence('jshint', 'jscs');
   });
 
   watch(config.jslint.srcCoffee, function(){
