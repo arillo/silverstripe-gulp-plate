@@ -1,1 +1,3 @@
-<p>&copy; $Now.Year $SiteConfig.Title</p>
+<div class="l-container">
+  <p>&copy; $Now.Year $SiteConfig.Title</p>
+</div>
