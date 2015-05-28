@@ -19,7 +19,8 @@ module.exports = {
   browserSync: {
     proxy: 'http://arillo.dev/clean-test',
     port: 9000,
-    notify: false
+    notify: false,
+    open: false
   },
 
   sass: {
