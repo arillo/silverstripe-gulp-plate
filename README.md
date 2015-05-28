@@ -1,4 +1,4 @@
-# Silverstripe clean theme
+# Silverstripe Gulp-plate
 
 Create a Silverstripe production theme using a [gulp.js](http://gulpjs.com/) workflow.
 
