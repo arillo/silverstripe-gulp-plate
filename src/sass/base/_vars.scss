@@ -71,7 +71,7 @@ $bp-md-max:   "(max-width: #{($layout-width-lg + ($layout-gutter-lg * 2)) - 1px}
 $grid-columns: 24;
 
 $grid-config-xs: (
-  "name": "xs",
+  "name": "",
   "cols": $grid-columns,
   "gutter": 16px,
   "bp": false,
