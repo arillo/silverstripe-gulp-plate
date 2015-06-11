@@ -1,0 +1,83 @@
+//============================================
+// Silverstripe form styles
+//============================================
+
+// Form btn
+input.action
+  @extend .btn
+
+// General field wraper
+.field
+  margin: 0 0 $space-half
+
+// Labels
+label.left
+  margin-bottom: $space-quarter
+
+.middleColumn + label.right
+  margin: $space-quarter
+
+// Headings in User definden forms
+.field + .FormHeading
+  padding-top: $space * 1.2;
+
+// Submit actions
+.Actions
+  padding-top: $space * .8
+
+
+// General form messages
+p.bad
+  color: shade(red, 20%)
+
+// Reset checkbox and
+// radioubutton lists
+div.checkboxset ul,
+div.optionset ul
+  padding-left: 0
+  list-style: none
+  margin-bottom: 0
+
+  ul
+    margin-bottom: 0
+
+// JS and PHP generated
+// error labels
+span.message.validation,
+span.message.error,
+span.required,
+label.required
+  color: shade(red, 20%)
+  display: block
+  margin: $space-quarter 0
+
+
+.checkbox
+  span.message.validation,
+  span.message.error,
+  span.required,
+  label.required
+    display: inline-block
+    margin: 0
+
+
+// General required fields note
+.requiredNotice
+  +pos(0, right bottom)
+  text-align: right
+  padding-left: 9px
+
+// Mark fields as required
+.checkbox.requiredField label.right,
+.requiredField label.left
+  padding-right: 9px
+  position: relative
+
+.checkbox.requiredField label.right:after,
+.requiredField label.left:after,
+.requiredNotice:after
+  +pos(2px 0, top left)
+  +size(5px)
+  border-radius: 50%
+  background-color: shade(red, 20%)
+  content: ""
