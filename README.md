@@ -1,4 +1,9 @@
-# Silverstripe Gulp-plate
+**N.B.** We are working on a in-depth Gulp Plate Documentation. You can look at the [preview](http://arillo.github.io/gulp-plate-docs/) or follow the basic introcution here below. Watch this repository to get notified when the docs will be ready. Enjoy your meal!
+
+
+![Silverstripe Gulp Plate](http://turbo.aminalhazwani.com.s3.amazonaws.com/github/silverstripe-gulp-plate.png)
+
+**Silverstripe Gulp-plate**
 
 Create a Silverstripe production theme using a [gulp.js](http://gulpjs.com/) workflow.
 
