@@ -1,5 +1,5 @@
 {
-    "name": "arillo/gulp-plate",
+    "name": "arillo/silverstripe-gulp-plate",
     "description": "Silverstripe gulp-plate",
     "type": "silverstripe-theme",
     "require": {
