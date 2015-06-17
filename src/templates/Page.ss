@@ -21,13 +21,7 @@
   <body data-page="<% if $Template %>$Template<% else %>$TemplateClassName<% end_if %>">
     <div class="l-wrap">
       <% include Header %>
-      <div class="l-container">
-        <div class="g-row">
-          <div class="g g-lg-12">
-            $Layout
-          </div>
-        </div>
-      </div>
+      $Layout
       <% include Footer %>
     </div>
     $SiteConfig.GoogleAnalytics
