@@ -9,16 +9,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     $MetaTags(false) $ShareMetaTags
 
-    <%-- <link rel="apple-touch-icon" href="{$BaseHref}apple-touch-icon.png"> --%>
+    <%-- <link rel="apple-touch-icon" href="{$BaseHref}{$ThemeDir}/images/apple-touch-icon.png"> --%>
     <%-- <meta name="msapplication-TileColor" content="#D8262E"> --%>
-    <%-- <meta name="msapplication-TileImage" content="{$BaseHref}tile.png"> --%>
-    <%-- <meta content="{$BaseHref}favicon.ico" itemprop="image"> --%>
-    <%-- <link rel="icon" href="{$BaseHref}favicon.ico" type="image/x-icon"> --%>
+    <%-- <meta name="msapplication-TileImage" content="{$BaseHref}{$ThemeDir}/images/tile.png"> --%>
+    <%-- <meta content="{$BaseHref}{$ThemeDir}/images/favicon.ico" itemprop="image"> --%>
+    <%-- <link rel="icon" href="{$BaseHref}{$ThemeDir}/images/favicon.ico" type="image/x-icon"> --%>
 
     <% require themedCSS("main") %>
   </head>
 
-  <body data-page="<% if $Template %>$Template<% else %>$TemplateClassName<% end_if %>">
+  <body>
     <div class="l-wrap">
       <% include Header %>
       $Layout
