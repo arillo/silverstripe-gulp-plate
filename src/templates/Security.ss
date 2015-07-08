@@ -13,8 +13,7 @@
     <%-- <meta content="{$BaseHref}favicon.ico" itemprop="image"> --%>
     <%-- <link rel="icon" href="{$BaseHref}favicon.ico" type="image/x-icon"> --%>
 
-    $CSS(main)
-    <script src="{$BaseHref}$ThemeDir/js/lib/modernizr.js"></script>
+    <% require themedCSS("main") %>
   </head>
 
   <body class="security">
