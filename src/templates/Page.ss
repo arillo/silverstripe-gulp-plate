@@ -25,7 +25,9 @@
       <% include Footer %>
     </div>
     $SiteConfig.GoogleAnalytics
-    <% include DesignHelper %>
+    <% if $CurrentMember %>
+      <% include DesignHelper %>
+    <% end_if %>
     <script src="$ThemeDir/js/main.js"></script>
   </body>
 
