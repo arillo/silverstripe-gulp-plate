@@ -40,7 +40,7 @@
     "coffeeify": "~1.0.0",
     "coffeelint-stylish": "^0.1.2",
     "del": "^1.1.1",
-    "gulp": "^3.8.11",
+    "gulp": "^3.9.0",
     "gulp-autoprefixer": "^2.1.0",
     "gulp-changed": "^1.1.1",
     "gulp-coffeelint": "^0.5.0",
