@@ -1,0 +1,18 @@
+//============================================
+// Browser
+//============================================
+
+.noJavascript
+  position: absolute
+  +pos(0, top left, fixed)
+  +size(100%)
+  z-index: 1000000
+  background: black
+  color: white
+
+.noJavascript_inner
+  +center(300px, 180px)
+
+.noJavascript_inner a
+  color: $gray
+  border-bottom: 1px solid shade($gray, 40%)

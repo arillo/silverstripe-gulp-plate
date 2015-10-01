@@ -19,6 +19,7 @@
   </head>
 
   <body>
+    <% include NoJavascript %>
     <div class="l-wrap">
       <% include Header %>
       $Layout

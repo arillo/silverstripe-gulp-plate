@@ -25,14 +25,13 @@ gulp.task('sprite', ['sprite:clean'], function (cb) {
     return gulp.src(config.glob, {cwd: config.src})
       .pipe(plumber())
       .pipe(svgSprite(config.optionsInline)).on('error', function(error){ console.log(error); })
-      .pipe(gulpif(config.removeFills,replace(/fill="#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})"/g, '')))
+      .pipe(gulpif(config.removeFills ,replace(/fill="#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})"/g, '')))
       .pipe(gulp.dest(config.dest));
   } else {
     return gulp.src(config.glob, {cwd: config.src})
       .pipe(svgSprite(config.optionsBackground))
       .on('error', function(error){ console.log(error); })
       .pipe(gulp.dest(config.dest));
-
   }
   
 });
