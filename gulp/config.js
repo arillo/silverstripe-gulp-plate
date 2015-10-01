@@ -68,7 +68,7 @@ module.exports = {
   },
 
   svgSprite: {
-    type: 'inline',
+    type: 'background',
     src: src + '/icons',
     glob: '**/*.svg',
     dest: dest + '/images',
@@ -83,14 +83,15 @@ module.exports = {
           dest: '.',
           render: {
             scss: {
-              template: 'gulp/tpl/_sprite.scss',
+              template: 'gulp/tpl/_sprite-inline.scss',
               dest: '../../'+folderName+'_source/src/sass/_sprite.scss'
             }
           }
         }
       },
       variables: {
-        cssPath: '../images/'
+        cssPath: '../images/',
+        common: 'i'
       }
     },
     optionsBackground : {
@@ -104,14 +105,15 @@ module.exports = {
           dest: '.',
           render: {
             scss: {
-              template: 'gulp/tpl/_sprite.scss',
+              template: 'gulp/tpl/_sprite-background.scss',
               dest: '../../'+folderName+'_source/src/sass/_sprite.scss'
             }
           }
         }
       },
       variables: {
-        cssPath: '../images/'
+        cssPath: '../images/',
+        common: 'i'
       }
     }
   },

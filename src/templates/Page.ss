@@ -20,6 +20,10 @@
 
   <body>
     <div class="l-wrap">
+      <i class="i i-facebook"></i>
+      <svg class="i i-facebook ">
+      <use xlink:href="$ThemeDir/images/sprite.svg#facebook"></use>
+    </svg>
       <% include Header %>
       $Layout
       <% include Footer %>
