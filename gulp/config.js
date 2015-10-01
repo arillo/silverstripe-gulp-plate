@@ -68,10 +68,11 @@ module.exports = {
   },
 
   svgSprite: {
-    type: 'background',
+    type: 'inline',
     src: src + '/icons',
     glob: '**/*.svg',
     dest: dest + '/images',
+    removeFills: true,
     optionsInline : {
       mode: {
         symbol: {
