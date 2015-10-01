@@ -71,7 +71,28 @@ module.exports = {
     src: src + '/icons',
     glob: '**/*.svg',
     dest: dest + '/images',
-    options : {
+    optionsInline : {
+      mode: {
+        symbol: {
+          layout: 'horizontal',
+          prefix: '.i-%s',
+          common: 'i',
+          dimensions: '-s',
+          sprite: 'sprite.svg',
+          dest: '.',
+          render: {
+            scss: {
+              template: 'gulp/tpl/_sprite.scss',
+              dest: '../../'+folderName+'_source/src/sass/_sprite.scss'
+            }
+          }
+        }
+      },
+      variables: {
+        cssPath: '../images/'
+      }
+    },
+    optionsBackground : {
       mode: {
         css: {
           layout: 'horizontal',
