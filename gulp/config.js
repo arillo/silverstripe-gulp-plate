@@ -68,7 +68,7 @@ module.exports = {
   },
 
   svgSprite: {
-    type: 'inline',
+    type: 'background',
     src: src + '/icons',
     glob: '**/*.svg',
     dest: dest + '/images',
