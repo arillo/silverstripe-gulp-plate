@@ -77,5 +77,31 @@ ${{common}}-map: (
 {{/shapes}}
 
 
+// Scale Icon
+//============================================
+
+@mixin scale-icon($name, $width, $round: "round") {
+  $w: $name + "-width";
+  $w: map-get($i-map, $w);
+  $h: $name + "-height";
+  $h: map-get($i-map, $h);
+  $height: $width / $w * $h;
+  @if $round == "round" {
+    $height: round($height);
+  }
+  @if $round == "ceil" {
+    $height: ceil($height);
+  }
+  @if $round == "floor" {
+    $height: floor($height);
+  }
+  @include size($width, $height);
+}
+
+// Alias
+@mixin iscale($name, $width, $round: "round") {
+  @include scale-icon($name, $width);
+}
+
 
 
