@@ -4,7 +4,6 @@ var gulp      = require('gulp');
 var svgSprite = require('gulp-svg-sprite');
 var del       = require('del');
 var config    = require('../config').svgSprite;
-var ifElse    = require('gulp-if-else');
 var replace   = require('gulp-replace');
 var plumber   = require('gulp-plumber');
 var gulpif    = require('gulp-if');
