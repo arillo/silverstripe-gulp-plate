@@ -17,6 +17,7 @@
   </head>
 
   <body class="security">
+    <% include BrowserWarning %>
     <div class="security_box">
       <h1 class="page_title"><a href="$BaseURLForLocale">$SiteConfig.Title</a></h1>
       <div class="security_content">

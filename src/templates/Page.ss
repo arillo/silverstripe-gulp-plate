@@ -19,7 +19,7 @@
   </head>
 
   <body>
-    <% include NoJavascript %>
+    <% include BrowserWarning %>
     <div class="l-wrap">
       <% include Header %>
       $Layout

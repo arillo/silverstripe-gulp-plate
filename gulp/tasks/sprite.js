@@ -15,15 +15,13 @@ gulp.task('sprite:clean', function(cb){
 });
 
 
-
-
 // Spriting inline method or background method
-
 gulp.task('sprite', ['sprite:clean'], function (cb) {
   if (config.type === 'inline') {
     return gulp.src(config.glob, {cwd: config.src})
       .pipe(plumber())
-      .pipe(svgSprite(config.optionsInline)).on('error', function(error){ console.log(error); })
+      .pipe(svgSprite(config.optionsInline))
+      .on('error', function(error){ console.log(error); })
       .pipe(gulpif(config.removeFills ,replace(/fill="#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})"/g, '')))
       .pipe(gulp.dest(config.dest));
   } else {
@@ -32,7 +30,6 @@ gulp.task('sprite', ['sprite:clean'], function (cb) {
       .on('error', function(error){ console.log(error); })
       .pipe(gulp.dest(config.dest));
   }
-  
 });
 
 
