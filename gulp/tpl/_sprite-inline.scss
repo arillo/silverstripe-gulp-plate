@@ -10,15 +10,15 @@
 // Vars
 //===========================================
 
-${{common}}-map: (
+$i-map: (
   {{#shapes}}
-  {{common}}-{{name}}-width: {{width.outer}}px,
-  {{common}}-{{name}}-height: {{height.outer}}px{{^last}},{{/last}}
+  i-{{name}}-width: {{width.outer}}px,
+  i-{{name}}-height: {{height.outer}}px{{^last}},{{/last}}
 
   {{/shapes}}
 );
 
-{{#shapes}}.{{common}}-{{name}} {
+{{#shapes}}.i-{{name}} {
   width: {{width.outer}}px;
   height: {{height.outer}}px;
 }

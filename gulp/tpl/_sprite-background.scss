@@ -10,15 +10,15 @@
 //===========================================
 
 
-${{common}}-map: (
-  {{common}}-map-path: url("{{{cssPath}}}{{{sprite}}}"),
-  {{common}}-map-width: {{spriteWidth}}px,
-  {{common}}-map-height: {{spriteHeight}}px,
+$i-map: (
+  i-map-path: url("{{{cssPath}}}{{{sprite}}}"),
+  i-map-width: {{spriteWidth}}px,
+  i-map-height: {{spriteHeight}}px,
   {{#shapes}}
 
-  {{common}}-{{name}}-width: {{width.outer}}px,
-  {{common}}-{{name}}-height: {{height.outer}}px,
-  {{common}}-{{name}}-position: {{position.absolute.xy}}{{^last}},{{/last}}
+  i-{{name}}-width: {{width.outer}}px,
+  i-{{name}}-height: {{height.outer}}px,
+  i-{{name}}-position: {{position.absolute.xy}}{{^last}},{{/last}}
   {{/shapes}}
 );
 
@@ -26,32 +26,21 @@ ${{common}}-map: (
 // Icon Mixin
 //===========================================
 
-@mixin {{common}}($add-style: false) {
-  @if $add-style {
-    display: inline-block;
-    vertical-align: middle;
-    font-style: normal;
-    position: relative;
-  }
+%i {
+  background-image: url("{{{cssPath}}}{{{sprite}}}")
 }
 
-%{{common}} {
-  background-image: url("{{{cssPath}}}{{{sprite}}}");
-}
-
-@mixin extend-{{common}}-url($extend: true) {
+@mixin extend-i-url($extend: true) {
   @if $extend {
-    @extend %{{common}};
+    @extend %i
   }
 }
-
 
 // Common Styles
 //===========================================
 
-.{{common}} {
-  @include {{common}}(true);
-  @include extend-{{common}}-url(true);
+.i {
+  @include extend-i-url(true);
 }
 
 
@@ -59,18 +48,16 @@ ${{common}}-map: (
 //===========================================
 
 {{#shapes}}
-@mixin {{common}}-{{name}}($add-style: true, $add-url: true) {
-  @include {{common}}($add-style);
-  @include extend-{{common}}-url($add-url);
+@mixin i-{{name}}($add-url: true) {
+  @include extend-i-url($add-url);
   background-position: {{position.absolute.xy}};
   width: {{width.outer}}px;
   height: {{height.outer}}px;
 }
 
-.{{common}}-{{name}} {
-  @include {{common}}-{{name}}(false, false);
+.i-{{name}} {
+  @include i-{{name}}(false);
 }
-
 
 {{/shapes}}
 

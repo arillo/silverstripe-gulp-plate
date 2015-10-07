@@ -68,7 +68,7 @@ module.exports = {
   },
 
   svgSprite: {
-    type: 'inline',
+    type: 'background',
     src: src + '/icons',
     glob: '**/*.svg',
     dest: dest + '/images',
@@ -85,18 +85,12 @@ module.exports = {
             }
           }
         }
-      },
-      variables: {
-        common: 'i'
       }
     },
     optionsBackground: {
       mode: {
         css: {
           layout: 'horizontal',
-          prefix: '.i-%s',
-          common: 'i',
-          dimensions: '-s',
           sprite: 'sprite.svg',
           dest: '.',
           render: {
@@ -108,8 +102,7 @@ module.exports = {
         }
       },
       variables: {
-        cssPath: '../images/',
-        common: 'i'
+        cssPath: '../images/'
       }
     }
   },
