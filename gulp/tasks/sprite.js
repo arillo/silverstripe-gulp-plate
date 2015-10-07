@@ -26,6 +26,7 @@ gulp.task('sprite', ['sprite:clean'], function (cb) {
       .pipe(gulp.dest(config.dest));
   } else {
     return gulp.src(config.glob, {cwd: config.src})
+      .pipe(plumber())
       .pipe(svgSprite(config.optionsBackground))
       .on('error', function(error){ console.log(error); })
       .pipe(gulp.dest(config.dest));
