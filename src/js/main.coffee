@@ -1,16 +1,12 @@
-# Browserify entry point for the global.js bundle (yay CoffeeScript!)
 $ = require 'jquery'
-plugin = require 'plugin'
 
-# Uncomment this for having referenced
-# inline svg icons working in ie
-#
+# Shimmed plugin example
+# plugin = require 'plugin'
+
+# Enable inline svgs in IE
 # svg4everybody = require 'svg4everybody'
-#
-# remember to initialize on doc ready svg4everybody()
-
-console.log 'main.js loaded!'
-
+# svg4everybody()
 
 $ ->
-  plugin()
+  # Shimmed plugin example
+  # plugin()

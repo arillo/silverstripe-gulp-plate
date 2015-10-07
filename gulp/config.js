@@ -73,13 +73,9 @@ module.exports = {
     glob: '**/*.svg',
     dest: dest + '/images',
     removeFills: true,
-    optionsInline : {
+    optionsInline: {
       mode: {
         symbol: {
-          layout: 'horizontal',
-          prefix: '.i-%s',
-          common: 'i',
-          dimensions: '-s',
           sprite: 'sprite.svg',
           dest: '.',
           render: {
@@ -91,11 +87,10 @@ module.exports = {
         }
       },
       variables: {
-        cssPath: '../images/',
         common: 'i'
       }
     },
-    optionsBackground : {
+    optionsBackground: {
       mode: {
         css: {
           layout: 'horizontal',
