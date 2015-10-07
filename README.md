@@ -81,6 +81,34 @@ Every time you run one of the commands the generated theme will be deleted! Don'
 
 All paths and plugin settings have been abstracted into a centralized config object in `gulp/config.js`. Adapt the paths and settings to the structure and needs of your project.
 
+__Browser sync config__
+
+Set the correct path to your theme:
+
+``` javascript
+...
+browserSync: {
+  proxy: 'http://arillo.dev/yourThemeName',
+}
+```
+
+__Sprite config__
+
+Set what type of sprite generation you want to use:
+
+```javascript
+...
+svgSprite: {
+  type: 'background' // set to 'inline' or 'background' (default)
+  ...
+}
+...
+
+```
+
+- __`'background'`__ creates a svg sprite that can be used as a background image in css.
+- __`'inline'`__ creates a svg image that can be used to reference icons with a `<use>` tag.
+
 ## Folder structure
 
 ```bash
@@ -95,6 +123,7 @@ myTheme_source/
 ```
 
 Any additional folder to be moved to the production theme needs a new dedicated task e.g. `"moveFonts"` if you would need to move a `fonts/` folder.
+
 
 ## Include external vendor css files
 
