@@ -5,7 +5,7 @@ var path = require('path');
 function distName() {
   var folder = path.dirname(__dirname);
   folder = path.basename(folder);
-  return folder.replace('_source', '');
+  return folder.replace('source_', '');
 }
 
 var folderName = distName();
