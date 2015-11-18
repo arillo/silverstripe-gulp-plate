@@ -81,7 +81,7 @@ module.exports = {
           render: {
             scss: {
               template: 'gulp/tpl/_sprite-inline.scss',
-              dest: '../../'+folderName+'_source/src/sass/_sprite.scss'
+              dest: '../../source_'+folderName+'/src/sass/_sprite.scss'
             }
           }
         }
@@ -96,7 +96,7 @@ module.exports = {
           render: {
             scss: {
               template: 'gulp/tpl/_sprite-background.scss',
-              dest: '../../'+folderName+'_source/src/sass/_sprite.scss'
+              dest: '../../source_'+folderName+'/src/sass/_sprite.scss'
             }
           }
         }
