@@ -63,10 +63,10 @@ var browserifyTask = function(devMode) {
     } else {
       // Sort out shared dependencies.
       // b.require exposes modules externally
-      if(bundleConfig.require) {b.require(bundleConfig.require);}
+      if(bundleConfig.require) b.require(bundleConfig.require);
       // b.external excludes modules from the bundle, and expects
       // they'll be available externally
-      if(bundleConfig.external) {b.external(bundleConfig.external);}
+      if(bundleConfig.external) b.external(bundleConfig.external);
     }
 
     return bundle();

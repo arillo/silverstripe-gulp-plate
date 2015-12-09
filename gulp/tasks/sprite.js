@@ -32,6 +32,3 @@ gulp.task('sprite', ['sprite:clean'], function (cb) {
       .pipe(gulp.dest(config.dest));
   }
 });
-
-
-

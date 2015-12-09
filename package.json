@@ -1,38 +1,21 @@
 {
-  "name": "gulp-starter",
+  "name": "silverstripe-gulp-plate",
   "version": "1.2.1",
-  "description": "Gulp starter with common tasks and scenarios",
+  "description": "Gulp boilerplate for SilverStripe theme development",
   "repository": {
     "type": "git",
-    "url": "git://github.com/arillo/gulp-starter.git"
+    "url": "git://github.com/arillo/silverstripe-gulp-plate.git"
   },
-  "//": [
-    "The following 'underscore' example demonstrates exposing a module included ",
-    "by another module. If you were to npm install underscore separately and ",
-    "require('underscore'), you'd end up with two copies in your bundle. The one",
-    "you installed, and the one that shipped with another package (backbone in ",
-    "this example). This is an edge case and should rarely happen.",
-    "",
-    "The 'plugin' example makes that file requireable with `require('plugin')`,",
-    "and available to browserify-shim as 'plugin' on line 30."
-  ],
   "browserify": {
     "transform": [
       "browserify-shim",
       "coffeeify"
     ]
   },
-  "browser": {
-    "plugin": "./src/js/vendor/jquery-plugin.js"
-  },
-  "browserify-shim": {
-    "plugin": {
-      "exports": "plugin",
-      "depends": [
-        "jquery:$"
-      ]
-    }
-  },
+
+  "browser": {},
+  "browserify-shim": {},
+
   "devDependencies": {
     "browser-sync": "~2.2.2",
     "browserify": "^9.0.3",
@@ -49,7 +32,7 @@
     "gulp-imagemin": "^2.2.1",
     "gulp-import-css": "^0.1.2",
     "gulp-jscs": "^1.6.0",
-    "gulp-jshint": "^1.10.0",
+    "gulp-jshint": "^1.11.0",
     "gulp-minify-css": "~0.5.1",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
@@ -61,7 +44,7 @@
     "gulp-uglify": "^1.1.0",
     "gulp-util": "^3.0.4",
     "gulp-watch": "^4.2.4",
-    "jshint-stylish": "^1.0.2",
+    "jshint-stylish": "^2.0.0",
     "lodash": "^3.3.1",
     "merge-stream": "^0.1.7",
     "pretty-hrtime": "~1.0.0",
