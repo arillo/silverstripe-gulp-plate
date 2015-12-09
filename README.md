@@ -29,7 +29,7 @@ Install Node. If you use homebrew, do:
 $ brew install node
 ```
 
-Otherwise, you can download and install from [here](http://nodejs.org/download/).
+Otherwise, you can download and install from [here](http://nodejs.org/download/). At the time of writing Node version 4+ is needed.
 
 Install Gulp globally:
 
@@ -48,8 +48,8 @@ This runs through all dependencies listed in `package.json` and downloads them t
 
 __Important:__
 
-1. Make sure that the name of your directory is `myTheme_source` (The `_source` part being the important bit.).
-2. Remove the .git folder/file (file if it is a submodule) to detach from the repo and include the `_source` theme in your Silverstripe git repo.
+1. Make sure that the name of your directory is `source_myTheme` (The `source_` part being the important bit.).
+2. Remove the .git folder/file (file if it is a submodule) to detach from the repo and include the `source_` theme in your Silverstripe git repo.
 3. Add `node_modules` and `myTheme`, or whatever the name of your generated theme is, to the project's `.gitignore` file.
 
 ## `gulp` commands
@@ -137,6 +137,16 @@ If you want to include external css files from npm or bower (bower is not setup 
 @import "../../node_modules/normalize.css/normalize.css"
 ```
 
+__Note:__
+
+This does not work if the `@import` is scoped inside a class like this:
+
+```sass
+// This will output a regular import!!!
+.myClass
+  @import "../../node_modules/normalize.css/normalize.css"
+```
+
 ## Shim a jQuery plugin to work with browserify
 
 ```js
@@ -190,16 +200,61 @@ var myScript = require('./ui/myScript');
 
 ```
 
-## JavaScript Tests with Karma
+## Multiple JavaScript bundles & library sharing between bundles
 
-This repo includes a basic js testing setup with the following: [Karma](http://karma-runner.github.io/0.12/index.html), [Mocha](http://mochajs.org/), [Chai](http://chaijs.com/), and [Sinon](http://sinonjs.org/). There is `karma` gulp task, which the `production` task uses to run the tests before compiling. If any tests fail, the `production` task will abort.
+When creating multiple JavaScript bundles it is important to include each library (e.g. jQuery) only once in your _main_ or _library_ bundle instead of every single bundle. To make this work follow the steps below to share `jquery` for example:
 
-To run the tests and start monitoring files:
+__In your `package.json`__
+
+```json
+{
+  //...
+  // Add the library you want to share to the `browser` object
+  // Look inside the package.json file of the library you want to share 
+  // to know which is the `main` file it exports.
+  "browser" : {
+    "jquery": "./node_modules/jquery/dist/jquery.js"
+  },
+  //...
+}
 ```
-./node_modules/karma/bin/karma start
-```
 
-Want to just run `karma start`? Either add `alias karma="./node_modules/karma/bin/karma"` to your shell config or install the karma command line interface globally with `npm install -g karma-cli`.
+__In your `gulp/config.js`__
+
+```js
+{
+  //...
+  browserify: {
+    bundleConfigs: [
+      // This is the main bundle that contains the libraries
+      {
+        entries: src + '/js/main.coffee',
+        dest: dest + '/js',
+        outputName: 'main.js',
+        extensions: ['.coffee'],
+        // This will include `jquery` in the main bundle weather it is uses
+        //`require('jquery')` itself or not, and make it available to the
+        // other bundles
+        require: ['libary-to-share']
+      },
+
+      // This is another bundle that will be generated
+      // it uses `jquery` but does not include it itself
+      {
+        entries: src + '/js/other-bundle.coffee',
+        dest: dest + '/js',
+        outputName: 'other-bundle.js',
+        extensions: ['.coffee'],
+        // This bit lets the bundle know that it has to get 
+        // jquery from somewhere else
+        external: ['jquery']
+
+      }
+    ]
+  }
+  //...
+}
+```
 
 ## Known issues
 
@@ -210,6 +265,6 @@ Want to just run `karma start`? Either add `alias karma="./node_modules/karma/bi
 
 ## References / Credits
 
-- Silverstripe clean theme is based on https://github.com/greypants/gulp-starter
+- SilverStripe-Gulp-plate is based on https://github.com/greypants/gulp-starter
 - Read the [blog post](http://viget.com/extend/gulp-browserify-starter-faq)
 - Check out the [Wiki](https://github.com/greypants/gulp-starter/wiki)

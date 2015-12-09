@@ -17,6 +17,7 @@ module.exports = {
   destFolder: dest,
 
   browserSync: {
+    // Change this to be your project folder
     proxy: 'http://arillo.dev/clean-test',
     port: 9000,
     notify: false,
@@ -57,7 +58,6 @@ module.exports = {
     srcJs: src + '/js/**/*.js',
     srcCoffee: src + '/js/**/*.coffee'
   },
-
 
   production: {
     cssSrc: dest + '/css/*.css',
@@ -109,26 +109,16 @@ module.exports = {
 
   browserify: {
     // A separate bundle will be generated for each
-    // bundle config in the list below
+    // bundle config in the list below.
+    // See README.md for more info.
     bundleConfigs: [
       {
         entries: src + '/js/main.coffee',
         dest: dest + '/js',
         outputName: 'main.js',
-        // Additional file extentions to make optional
         extensions: ['.coffee'],
-        // list of modules to make require-able externally
         require: ['jquery']
-        // old: require: ['jquery', 'backbone/node_modules/underscore']
-        // See https://github.com/greypants/gulp-starter/issues/87 for note about
-        // why this is 'backbone/node_modules/underscore' and not 'underscore'
       }
-    // }, {
-    //   entries: src + '/js/page.js',
-    //   dest: dest + '/js',
-    //   outputName: 'page.js',
-    //   // list of externally available modules to exclude from the bundle
-    //   external: ['jquery', 'underscore']
     ]
   }
 };
