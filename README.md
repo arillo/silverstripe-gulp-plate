@@ -41,7 +41,7 @@ $ npm install -g gulp
 
 As this is a boilerplate the package should not be updated once you start creating your theme. Right now there is no scaffolding tool in place to start using the package, therefor you need to clone it and delete the `.git` folder manually:
 
-**1.** Clone the repo to wherever you need to have it. Make sure to name the folder **`source_`**`myThemeName` (The `source_` part being the important bit).
+**1.** Clone the repo to wherever you need to have it. Make sure to name the folder `source_myThemeName` (The **`source_`** part being the important bit).
 
 ```
 $ git clone git@github.com:arillo/silverstripe-gulp-plate.git source_myThemeName
