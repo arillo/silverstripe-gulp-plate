@@ -1,11 +1,11 @@
-**N.B.** We are working on a in-depth Gulp Plate Documentation. You can look at the [preview](http://arillo.github.io/gulp-plate-docs/) or follow the basic introcution here below. Watch this repository to get notified when the docs will be ready. Enjoy your meal!
+**N.B.** We are working on a in-depth Gulp Plate Documentation. You can look at the [preview](http://arillo.github.io/gulp-plate-docs/) or follow the basic introduction here below. Watch this repository to get notified when the docs will be ready. Enjoy your meal!
 
 
 ![Silverstripe Gulp Plate](http://turbo.aminalhazwani.com.s3.amazonaws.com/github/silverstripe-gulp-plate.png)
 
 **Silverstripe Gulp-plate**
 
-Create a Silverstripe production theme using a [gulp.js](http://gulpjs.com/) workflow.
+This is a boilerplate / starting-point to create a Silverstripe production theme using a [gulp.js](http://gulpjs.com/) workflow.
 
 Includes the following tools, tasks, and workflows:
 
@@ -21,7 +21,7 @@ Includes the following tools, tasks, and workflows:
 - Shimming non common-js vendor code with other dependencies (like a jQuery plugin)
 - Svg icon sprite generation using [gulp-svg-sprite](https://github.com/jkphl/gulp-svg-sprite)
 
-## Dependencies / Installation
+## Dependencies
 
 Install Node. If you use homebrew, do:
 
@@ -37,20 +37,30 @@ Install Gulp globally:
 $ npm install -g gulp
 ```
 
-After the setup:
+## Installation
+
+As this is a boilerplate the package should not be updated once you start creating your theme. Right now there is no scaffolding tool in place to start using the package, therefor you need to clone it and delete the `.git` folder manually:
+
+**1.** Clone the repo to wherever you need to have it. Make sure to name the folder **`source_`**`myThemeName` (The `source_` part being the important bit).
 
 ```
-$ cd to project
+$ git clone git@github.com:arillo/silverstripe-gulp-plate.git source_myThemeName
+```
+
+**2.** Delete the `.git` folder
+
+```
+$ rm -rf source_myThemeName/.git
+```
+
+**3.** Install the node modules.
+
+```
+$ cd source_myThemeName
 $ npm install
 ```
 
 This runs through all dependencies listed in `package.json` and downloads them to a `node_modules` folder in your project directory.
-
-__Important:__
-
-1. Make sure that the name of your directory is `source_myTheme` (The `source_` part being the important bit.).
-2. Remove the .git folder/file (file if it is a submodule) to detach from the repo and include the `source_` theme in your Silverstripe git repo.
-3. Add `node_modules` and `myTheme`, or whatever the name of your generated theme is, to the project's `.gitignore` file.
 
 ## `gulp` commands
 
