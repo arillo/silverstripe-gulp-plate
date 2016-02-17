@@ -5,7 +5,7 @@
 
 **Silverstripe Gulp-plate**
 
-This is a boilerplate / starting-point to create a Silverstripe production theme using a [gulp.js](http://gulpjs.com/) workflow.
+Boilerplate / starting-point to create a Silverstripe production theme using a [gulp.js](http://gulpjs.com/) workflow.
 
 Includes the following tools, tasks, and workflows:
 
