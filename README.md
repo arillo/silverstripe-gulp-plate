@@ -1,9 +1,4 @@
-**N.B.** We are working on a in-depth Gulp Plate Documentation. You can look at the [preview](http://arillo.github.io/gulp-plate-docs/) or follow the basic introduction here below. Watch this repository to get notified when the docs will be ready. Enjoy your meal!
-
-
-![Silverstripe Gulp Plate](http://turbo.aminalhazwani.com.s3.amazonaws.com/github/silverstripe-gulp-plate.png)
-
-**Silverstripe Gulp-plate**
+# Silverstripe Gulp-plate
 
 Boilerplate / starting-point to create a Silverstripe production theme using a [gulp.js](http://gulpjs.com/) workflow.
 
@@ -15,11 +10,12 @@ Includes the following tools, tasks, and workflows:
 - [CoffeeScript](http://coffeescript.org/) (with source maps!)
 - [BrowserSync](http://browsersync.io) for live reloading and a static server
 - [Image optimization](https://www.npmjs.com/package/gulp-imagemin)
+- [Sass linting](https://github.com/sasstools/sass-lint)
 - [Javascript linting](http://jshint.com/)
 - [Coffeescript linting](http://www.coffeelint.org/)
 - Error handling in the console [and in Notification Center](https://github.com/mikaelbr/gulp-notify)
 - Shimming non common-js vendor code with other dependencies (like a jQuery plugin)
-- Svg icon sprite generation using [gulp-svg-sprite](https://github.com/jkphl/gulp-svg-sprite)
+- Svg icon sprite generation using [gulp-svg-sprite](https://github.com/jkphl/gulp-svg-sprite) inline or as background image.
 
 ## Dependencies
 
@@ -68,7 +64,7 @@ This runs through all dependencies listed in `package.json` and downloads them t
 $ gulp
 ```
 
-Will generate a dev version of the theme in `myTheme` folder (omitting the `_source`) part
+Will generate a dev version of the theme in `myTheme` folder (omitting the `source_`) part
 
 
 ```
@@ -87,20 +83,24 @@ __Important:__
 
 Every time you run one of the commands the generated theme will be deleted! Don't make any changes in that directory.
 
+## Folder structure
+
+```bash
+myTheme_source/
+  gulp/         # all gulp tasks
+  src/          # all source files
+    icons/      # svg to be combined as a sprite
+    images/     # other images
+    js/         # js code, can be coffeescript or plain js (mix is possible)
+    sass/       # Sass code, scss and sass syntax possible
+    templates/  # Silverstripe templates
+```
+
+Any additional folder to be moved to the production theme needs a new dedicated task e.g. `"moveFonts"` if you would need to move a `fonts/` folder.
+
 ## Configuration
 
 All paths and plugin settings have been abstracted into a centralized config object in `gulp/config.js`. Adapt the paths and settings to the structure and needs of your project.
-
-__Browser sync config__
-
-Set the correct path to your theme:
-
-``` javascript
-...
-browserSync: {
-  proxy: 'http://arillo.dev/yourThemeName',
-}
-```
 
 __Sprite config__
 
@@ -119,21 +119,20 @@ svgSprite: {
 - __`'background'`__ creates a svg sprite that can be used as a background image in css.
 - __`'inline'`__ creates a svg image that can be used to reference icons with a `<use>` tag.
 
-## Folder structure
+__Generic move task__
 
-```bash
-myTheme_source/
-  gulp/         # all gulp tasks
-  src/          # all source files
-    icons/      # svg to be combined as a sprite
-    images/     # other images
-    js/         # js code, can be coffeescript or plain js (mix is possible)
-    sass/       # Sass code, scss and sass syntax possible
-    templates/  # Silverstripe templates
+There is a generic task to move assets from the source directory without transformations, e.g. font files. To use is add the paths to the `move` array in the config file:
+
+```javascript
+...
+move: {
+  {
+    src: "path/to/files"
+    dest: "path to destination"
+  }
+}
+...
 ```
-
-Any additional folder to be moved to the production theme needs a new dedicated task e.g. `"moveFonts"` if you would need to move a `fonts/` folder.
-
 
 ## Include external vendor css files
 
@@ -149,12 +148,17 @@ If you want to include external css files from npm or bower (bower is not setup 
 
 __Note:__
 
-This does not work if the `@import` is scoped inside a class like this:
+Scoping imports to a class will just be ignored:
 
 ```sass
-// This will output a regular import!!!
 .myClass
   @import "../../node_modules/normalize.css/normalize.css"
+
+// will output:
+
+// normalize stuff ...
+
+.myClass {}
 ```
 
 ## Shim a jQuery plugin to work with browserify
@@ -268,8 +272,6 @@ __In your `gulp/config.js`__
 
 ## Known issues
 
-- Sass sourcemaps are not working properly, the handling of Sass indented syntax seems a little buggy.
-- No great sass & scss linter is available at the time of writing. https://github.com/sasstools/sass-lint looks promising but does not seem finished yet.
 - `.coffeeelintignore` seems not to be working, be aware when changing the path to watch more than your `./src/js` directory.
 - The Sass files to be rendered as `.css` files need to have the extension `.sass` otherwise the compiler fails. Partials can be both `.sass` and `.scss`.
 

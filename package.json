@@ -1,6 +1,6 @@
 {
   "name": "silverstripe-gulp-plate",
-  "version": "1.3.1",
+  "version": "1.3.0",
   "description": "Gulp boilerplate for SilverStripe theme development",
   "repository": {
     "type": "git",
