@@ -6,6 +6,10 @@
     "type": "git",
     "url": "git://github.com/arillo/silverstripe-gulp-plate.git"
   },
+  "engines": {
+    "node": "^5.9.0",
+    "npm": "^3.7.3"
+  },
   "license": "MIT",
   "browserify": {
     "transform": [
