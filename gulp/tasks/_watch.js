@@ -5,11 +5,11 @@
    - watchers are made using `gulp-watch` so new files are automatically watched
 */
 
-var gulp     = require('gulp');
-var config   = require('../config');
+var gulp          = require('gulp');
+var config        = require('../config');
 var browserSync   = require('browser-sync');
-var runSequence = require('run-sequence');
-var watch = require('gulp-watch');
+var runSequence   = require('run-sequence');
+var watch         = require('gulp-watch');
 
 
 gulp.task('watch', ['clean'], function() {
@@ -28,15 +28,15 @@ gulp.task('watch', ['clean'], function() {
   });
 
   watch(config.sass.src, function(){
-    runSequence('sass');
+    runSequence('sasslint', 'sass');
   });
 
   watch(config.images.src, function(){
     runSequence('images', browserSync.reload);
   });
 
-  watch([config.markup.src], function(){
-    runSequence('markup', browserSync.reload);
+  watch([config.html.src], function(){
+    runSequence('html', browserSync.reload);
   });
   // Watchify will watch and recompile our JS, so no need to gulp.watch it
 });

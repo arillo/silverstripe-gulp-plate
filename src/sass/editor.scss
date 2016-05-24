@@ -8,11 +8,24 @@
 //============================================
 
 @import "lib/lib"
+@import "lib/vars"
+
+
+// Thirdparty
+//============================================
+
+@import "thirdparty/normalize"
 
 
 // Base
 //============================================
 
-@import "base/normalize"
-@import "base/vars"
 @import "base/defaults"
+
+
+// Custom styles
+//============================================
+
+body
+  margin: 10px
+

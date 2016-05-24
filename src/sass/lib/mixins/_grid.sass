@@ -23,12 +23,12 @@
 =grid($configs...)
   // Default Classes
   .g-row
-    +cf()
+    +cf
 
   .g
     float: left
     width: 100%
-    min-height: 1px
+    min-height: 0.1rem
     position: relative
 
   @each $config in $configs
@@ -36,14 +36,17 @@
     // Get config
     $name:    map-get($config, "name")
     $cols:    map-get($config, "cols")
-    $gutter-lft:  ceil(map-get($config, "gutter") / 2)
-    $gutter-rgt:  floor(map-get($config, "gutter") / 2)
+    $gutter-lft:  map-get($config, "gutter") / 2
+    $gutter-rgt:  map-get($config, "gutter") / 2
 
     @if str-length($name) != 0
-      $name: "-#{$name}"
+      $name: "#{\@}#{$name}"
 
     // Base unit
-    $base: (100%/$cols)
+    $base: (100% / 12)
+
+    @if $cols
+      $base: (100% / $cols)
 
     +mq(map-get($config, "bp"))
 
@@ -52,25 +55,29 @@
         margin-left: -$gutter-lft
         margin-right: -$gutter-rgt
 
-      // Clear
-      @if map-get($config, "clear")
-        @each $col in map-get($config, "clear")
-          .g#{$name}-clear-#{$col}
-            .g:nth-child(#{$col}n+1)
-              clear: left
-            .g:not(:nth-child(#{$col}n+1))
-              clear: none
-
       // Update unit
       .g
         padding-left: $gutter-lft
         padding-right: $gutter-rgt
 
-      // Units
-      @for $i from 1 through $cols
-        .g#{$name}-#{$i}
-          width: $base * $i
+      // Clear
+      @if map-get($config, "clear")
+        @each $col in map-get($config, "clear")
+          $nth-val: "#{$col}n + 1"
 
+          .g-clear-#{$col}#{$name}
+            > .g
+              &:nth-child(#{$nth-val})
+                clear: left
+
+              &:not(:nth-child(#{$nth-val}))
+                clear: none
+
+      // Units
+      @if $cols
+        @for $i from 1 through $cols
+          .g-#{$i}#{$name}
+            width: $base * $i
 
       // Helpers
       +grid-helper($config, "off", margin-left, 0)
@@ -84,12 +91,19 @@
 =grid-helper ($config, $type, $prop, $val0)
   $name: map-get($config, "name")
   $cols: map-get($config, "cols")
-  $base: (100%/$cols)
+  $base: (100% / $cols)
 
-  @if map-get($config, $type)
-    .g-#{$name}-#{$type}-0
-      #{$prop}: $val0
+  @if str-length($name) != 0
+    $name: "#{\@}#{$name}"
 
-    @for $i from 1 to $cols
-      .g-#{$name}-#{$type}-#{$i}
-        #{$prop}: $base * $i
+  @if $cols
+    @if map-get($config, $type)
+      $class-name: "g-#{$type}-0-"
+
+      .#{$class-name}#{$name}
+        #{$prop}: $val0
+
+      $class-name: "g-#{$type}-"
+      @for $i from 1 to $cols
+        .#{$class-name}#{$i}#{$name}
+          #{$prop}: $base * $i

@@ -1,6 +1,7 @@
 'use strict';
 
-var path = require('path');
+var convertToRem  = require('./util/convertToRem');
+var path          = require('path');
 
 function distName() {
   var folder = path.dirname(__dirname);
@@ -8,9 +9,13 @@ function distName() {
   return folder.replace('source_', '');
 }
 
-var folderName = distName();
-var dest = './../'+ folderName;
-var src = './src';
+// function parentFolderName() {
+//   console.log(path.dirname(__dirname))
+// }
+
+var folderName  = distName();
+var dest        = './../' + folderName;
+var src         = './src';
 
 
 module.exports = {
@@ -27,21 +32,25 @@ module.exports = {
   sass: {
     src: src + '/sass/**/*.{sass,scss}',
     dest: dest + '/css',
+    settings: {
+      indentedSyntax: true, // Enable .sass syntax!
+      outputStyle: 'expanded'
+    },
     prefix: [
-      'ie >= 9',
+      'ie >= 10',
       'ie_mob >= 10',
       'ff >= 30',
       'chrome >= 34',
       'safari >= 7',
-      'opera >= 23',
-      'ios >= 7',
+      'opera >= 28',
+      'ios >= 8',
+      'edge >= 13',
       'android >= 4.4',
       'bb >= 10'
     ],
-    settings: {
-      indentedSyntax: true, // Enable .sass syntax!
-      imagePath: 'images' // Used by the image-url helper
-    }
+    // Css Selectors that should be removed from your css.
+    // useful to remove unneeded thirdparty styles.
+    remove: []
   },
 
   images: {
@@ -49,7 +58,7 @@ module.exports = {
     dest: dest + '/images'
   },
 
-  markup: {
+  html: {
     src: src + '/templates/**',
     dest: dest + '/templates'
   },
@@ -60,11 +69,27 @@ module.exports = {
   },
 
   production: {
+    dest: dest,
+
     cssSrc: dest + '/css/*.css',
     jsSrc: dest + '/js/*.js',
-    dest: dest,
+
     cssDest: dest + '/css',
-    jsDest: dest + '/js'
+    jsDest: dest + '/js',
+
+    cssCompressionOpts: {
+      safe: true,
+      mergeLonghand: false,
+      discardComments: {
+        removeAll: true
+      }
+    },
+
+    reportSrc: [
+      dest + '/css/*.css',
+      dest + '/js/*.js',
+      dest + '/images/**/*'
+    ],
   },
 
   svgSprite: {
@@ -72,7 +97,6 @@ module.exports = {
     src: src + '/icons',
     glob: '**/*.svg',
     dest: dest + '/images',
-    removeFills: true,
     optionsInline: {
       mode: {
         symbol: {
@@ -81,7 +105,7 @@ module.exports = {
           render: {
             scss: {
               template: 'gulp/tpl/_sprite-inline.scss',
-              dest: '../../source_'+folderName+'/src/sass/_sprite.scss'
+              dest: '../../source_' + folderName + '/src/sass/base/_sprite.scss'
             }
           }
         }
@@ -96,13 +120,14 @@ module.exports = {
           render: {
             scss: {
               template: 'gulp/tpl/_sprite-background.scss',
-              dest: '../../source_'+folderName+'/src/sass/_sprite.scss'
+              dest: '../../source_' + folderName + '/src/sass/base/_sprite.scss'
             }
           }
         }
       },
       variables: {
-        cssPath: '../images/'
+        cssPath: '../images/',
+        rem: convertToRem
       }
     }
   },
@@ -116,8 +141,7 @@ module.exports = {
         entries: src + '/js/main.coffee',
         dest: dest + '/js',
         outputName: 'main.js',
-        extensions: ['.coffee'],
-        require: ['jquery']
+        extensions: ['.coffee']
       }
     ]
   }
