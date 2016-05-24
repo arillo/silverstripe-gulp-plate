@@ -25,7 +25,7 @@
 
   .fillupelement {
     background: lightblue;
-    height: 20000000px;
+    height: 100vh;
   }
 
   #Grid.show {
@@ -35,20 +35,8 @@
 
 
 <div id="Grid">
-  <div style="max-width: 1270px; margin: 0 auto">
+  <div class="l-container">
   <div class="g-row fillgrid">
-    <div class="g g-1"><div class="fillupelement"></div></div>
-    <div class="g g-1"><div class="fillupelement"></div></div>
-    <div class="g g-1"><div class="fillupelement"></div></div>
-    <div class="g g-1"><div class="fillupelement"></div></div>
-    <div class="g g-1"><div class="fillupelement"></div></div>
-    <div class="g g-1"><div class="fillupelement"></div></div>
-    <div class="g g-1"><div class="fillupelement"></div></div>
-    <div class="g g-1"><div class="fillupelement"></div></div>
-    <div class="g g-1"><div class="fillupelement"></div></div>
-    <div class="g g-1"><div class="fillupelement"></div></div>
-    <div class="g g-1"><div class="fillupelement"></div></div>
-    <div class="g g-1"><div class="fillupelement"></div></div>
     <div class="g g-1"><div class="fillupelement"></div></div>
     <div class="g g-1"><div class="fillupelement"></div></div>
     <div class="g g-1"><div class="fillupelement"></div></div>
