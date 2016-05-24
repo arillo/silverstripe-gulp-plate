@@ -3,19 +3,21 @@
 var convertToRem  = require('./util/convertToRem');
 var path          = require('path');
 
-function distName() {
+function destName() {
   var folder = path.dirname(__dirname);
   folder = path.basename(folder);
   return folder.replace('source_', '');
 }
 
-// function parentFolderName() {
-//   console.log(path.dirname(__dirname))
-// }
+function baseName() {
+  var folder = path.join(__dirname, '..', '..', '..');
+  return path.parse(folder).base;
+}
 
-var folderName  = distName();
-var dest        = './../' + folderName;
-var src         = './src';
+var baseFolderName  = baseName();
+var destFolderName  = destName();
+var dest            = './../' + destFolderName;
+var src             = './src';
 
 
 module.exports = {
@@ -23,7 +25,7 @@ module.exports = {
 
   browserSync: {
     // Change this to be your project folder
-    proxy: 'http://arillo.dev/clean-test',
+    proxy: 'http://arillo.dev/' + baseFolderName,
     port: 9000,
     notify: false,
     open: false
@@ -105,7 +107,7 @@ module.exports = {
           render: {
             scss: {
               template: 'gulp/tpl/_sprite-inline.scss',
-              dest: '../../source_' + folderName + '/src/sass/base/_sprite.scss'
+              dest: '../../source_' + destFolderName + '/src/sass/base/_sprite.scss'
             }
           }
         }
@@ -120,7 +122,7 @@ module.exports = {
           render: {
             scss: {
               template: 'gulp/tpl/_sprite-background.scss',
-              dest: '../../source_' + folderName + '/src/sass/base/_sprite.scss'
+              dest: '../../source_' + destFolderName + '/src/sass/base/_sprite.scss'
             }
           }
         }
