@@ -55,14 +55,25 @@ module.exports = {
     remove: []
   },
 
-  images: {
-    src: src + '/images/**',
-    dest: dest + '/images'
-  },
+  // Generic move task, useful to move assets that do
+  // not need transformations. Keep in mind that
+  // these files will not be watched and are only
+  // moved when the default task is executed.
+  move: [
+    // {
+    //   src: src + '/fonts/**',
+    //   dest: dest + '/fonts'
+    // }
+  ],
 
   html: {
     src: src + '/templates/**',
     dest: dest + '/templates'
+  },
+
+  images: {
+    src: src + '/images/**',
+    dest: dest + '/images'
   },
 
   jslint: {
