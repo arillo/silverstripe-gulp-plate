@@ -18,7 +18,7 @@
       margin-bottom: $space-quarter
 
   input.text
-    @extend .form_input
+    @extend .form_input !optional
 
   input.action
     +btn
@@ -79,8 +79,8 @@
 .ss-form
   .checkbox.requiredField label.right,
   .requiredField label.left
-      padding-right: 0.9rem
-      position: relative
+    padding-right: 0.9rem
+    position: relative
 
     &::after
       +pos(0.2rem 0, top left)
