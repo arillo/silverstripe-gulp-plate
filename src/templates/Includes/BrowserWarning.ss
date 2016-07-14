@@ -3,7 +3,7 @@
     <div class="browserWarning_inner">
       <h3><%t BrowserWarning.TitleIE 'WARNING!' %></h3>
       <p>
-        <%t BrowserWarning.ContentIE 'Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.' %>
+        <%t BrowserWarning.ContentIE 'Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="https://www.chromium.org/developers/how-tos/chrome-frame-getting-started">install Google Chrome Frame</a> to experience this site.' %>
       </p>
     </div>
   </div>
