@@ -6,12 +6,14 @@
     <% include BrowserWarning %>
     <div class="l-wrap">
       <% include Header %>
-      $Layout
+      <main>
+        $Layout
+      </main>
       <% include Footer %>
     </div>
 
-      <% include DesignHelper %>
     <% if $CurrentMember %>
+      <% include DesignHelper %>
     <% end_if %>
 
     $SiteConfig.GoogleAnalytics
