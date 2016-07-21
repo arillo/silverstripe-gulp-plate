@@ -21,6 +21,7 @@
     opacity: .3;
     z-index: 20000;
     display: none;
+    pointer-events: none;
   }
 
   .fillupelement {

@@ -10,8 +10,8 @@
       <% include Footer %>
     </div>
 
-    <% if $CurrentMember %>
       <% include DesignHelper %>
+    <% if $CurrentMember %>
     <% end_if %>
 
     $SiteConfig.GoogleAnalytics
