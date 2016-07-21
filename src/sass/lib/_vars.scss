@@ -30,9 +30,9 @@ $color-success: #2fa714;
 
 $space:              2.4rem; // 24px
 $space-quarter:      $space * 0.25;
-$space-third:        round($space / 3);
+$space-third:        decimal-round($space / 3, 1);
 $space-half:         $space * 0.5;
-$space-threeQuarter: round($space * 0.75);
+$space-threeQuarter: decimal-round($space * 0.75, 1);
 $space-oneAndHalf:   $space * 1.5;
 $space-double:       $space * 2;
 
@@ -51,6 +51,13 @@ $fs-h3: 3rem;
 $fs-h4: 2.5rem;
 $fs-h5: 2rem;
 $fs-h6: 1.6rem;
+
+$lh-h1: 1.1;
+$lh-h2: 1.1;
+$lh-h3: 1.2;
+$lh-h4: 1.3;
+$lh-h5: 1.3;
+$lh-h6: 1.3;
 
 
 // Layout
