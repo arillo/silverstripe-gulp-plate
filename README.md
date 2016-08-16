@@ -78,7 +78,7 @@ Will run the default task once, start a server and watch for file changes.
 $ npm run prod
 ```
 
-Will generate a production version of the theme by running the tests and compressing js & css. This is the folder that should go on the server.
+Will generate a production version of the theme by compressing js & css. This is the folder that should go on the server.
 
 __Important:__
 
@@ -87,7 +87,7 @@ Every time you run one of the commands the generated theme will be deleted! Don'
 ## Folder structure
 
 ```bash
-myTheme_source/
+source_myTheme/
   gulpfile.js/  # gulp tasks
   src/
     icons/      # SVG files to be included in he the sprite
@@ -126,8 +126,8 @@ There is a generic task to move assets from the source directory without transfo
 ...
 move: {
   {
-    src: "path/to/files"
-    dest: "path to destination"
+    src: "path/to/source-files"
+    dest: "path/to/destination"
   }
 }
 ...
@@ -160,7 +160,7 @@ Scoping imports to a class will just be ignored:
 .myClass {}
 ```
 
-Also code imported this way will be at the top of the generated CSS file as sass moves all includes to the top of the file and the inlining has to happen after Sass compilation. There are no known issues with this at the time of writing.
+Code imported this way will be at the top of the generated CSS file as sass moves all includes to the top of the file and the inlining has to happen after Sass compilation. There are no known issues with this at the time of writing.
 
 ## Shim a jQuery plugin to work with browserify
 
@@ -234,7 +234,7 @@ __In your `package.json`__
 }
 ```
 
-__In your `gulp/config.js`__
+__In your `gulpfile.js/config.js`__
 
 ```js
 {
@@ -243,10 +243,9 @@ __In your `gulp/config.js`__
     bundleConfigs: [
       // This is the main bundle that contains the libraries
       {
-        entries: src + '/js/main.coffee',
+        entries: src + '/js/main.js',
         dest: dest + '/js',
         outputName: 'main.js',
-        extensions: ['.coffee'],
         // This will include `jquery` in the main bundle weather it is uses
         //`require('jquery')` itself or not, and make it available to the
         // other bundles
@@ -256,10 +255,9 @@ __In your `gulp/config.js`__
       // This is another bundle that will be generated
       // it uses `jquery` but does not include it itself
       {
-        entries: src + '/js/other-bundle.coffee',
+        entries: src + '/js/other-bundle.js',
         dest: dest + '/js',
         outputName: 'other-bundle.js',
-        extensions: ['.coffee'],
         // This bit lets the bundle know that it has to get 
         // jquery from somewhere else
         external: ['jquery']
