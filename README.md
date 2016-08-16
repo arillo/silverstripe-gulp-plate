@@ -80,6 +80,12 @@ $ npm run prod
 
 Will generate a production version of the theme by compressing js & css. This is the folder that should go on the server.
 
+If you want to run any other gulp task just append the task name to the gulp command:
+
+```
+$ npm run gulp sprite
+```
+
 __Important:__
 
 Every time you run one of the commands the generated theme will be deleted! Don't make any changes in that directory.
