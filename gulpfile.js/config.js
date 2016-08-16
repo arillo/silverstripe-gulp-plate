@@ -110,7 +110,7 @@ module.exports = {
       {
         entries: src + '/js/main.js',
         dest: dest + '/js',
-        outputName: 'main.js',
+        outputName: 'main.js'
       }
     ]
   },
@@ -136,6 +136,6 @@ module.exports = {
       dest + '/css/*.css',
       dest + '/js/*.js',
       dest + '/images/**/*'
-    ],
+    ]
   }
 };
