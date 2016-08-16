@@ -107,7 +107,7 @@ source_myTheme/
 
 ## Configuration
 
-All paths and plugin settings have been abstracted into a centralized config object in `gulp/config.js`. Adapt the paths and settings to the structure and needs of your project.
+All paths and plugin settings have been abstracted into a centralized config object in `./gulpfile.js/config.js`. Adapt the paths and settings to the structure and needs of your project.
 
 __Sprite config__
 
