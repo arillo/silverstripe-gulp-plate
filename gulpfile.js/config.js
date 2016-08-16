@@ -24,7 +24,6 @@ module.exports = {
   destFolder: dest,
 
   browserSync: {
-    // Change this to be your project folder
     proxy: 'http://arillo.dev/' + baseFolderName,
     port: 9000,
     notify: false,
@@ -35,7 +34,7 @@ module.exports = {
     src: src + '/sass/**/*.{sass,scss}',
     dest: dest + '/css',
     settings: {
-      indentedSyntax: true, // Enable .sass syntax!
+      indentedSyntax: true,
       outputStyle: 'expanded'
     },
     prefix: [
@@ -76,9 +75,9 @@ module.exports = {
     dest: dest + '/images'
   },
 
-  jslint: {
-    srcJs: src + '/js/**/*.js',
-    srcCoffee: src + '/js/**/*.coffee'
+  eslint: {
+    src: src + '/js/**/*.js',
+    options: './eslintrc.json'
   },
 
   production: {
@@ -106,47 +105,25 @@ module.exports = {
   },
 
   svgSprite: {
-    type: 'background', // 'inline'
     src: src + '/icons',
     glob: '**/*.svg',
     dest: dest + '/images',
-    optionsInline: {
-      mode: {
-        symbol: {
-          sprite: 'sprite.svg',
-          dest: '.',
-          render: {
-            scss: {
-              template: 'gulp/tpl/_sprite-inline.scss',
-              dest: '../../source_' + destFolderName + '/src/sass/base/_sprite.scss'
-            }
-          }
-        }
-      },
-      variables: {
-        cssPath: '../images/',
-        rem: convertToRem
-      }
+
+    // Sprite type:
+    // 1. `symbol` for inline SVGs
+    // 2. `css` for sprites as css background image
+    type: 'symbol',
+
+    // These paths are not very straight forward as
+    // the svg-sprite plugin as a strange API.
+    sassDest: '../../source_' + destFolderName + '/src/sass/base/_sprite.scss',
+    spriteImgName: 'sprite.svg',
+    templateSymbol: 'gulpfile.js/tpl/_sprite-symbol.scss',
+    templateCss: 'gulpfile.js/tpl/_sprite-css.scss',
+    templateVars: {
+      cssPath: '../images/',
+      rem: convertToRem
     },
-    optionsBackground: {
-      mode: {
-        css: {
-          layout: 'horizontal',
-          sprite: 'sprite.svg',
-          dest: '.',
-          render: {
-            scss: {
-              template: 'gulp/tpl/_sprite-background.scss',
-              dest: '../../source_' + destFolderName + '/src/sass/base/_sprite.scss'
-            }
-          }
-        }
-      },
-      variables: {
-        cssPath: '../images/',
-        rem: convertToRem
-      }
-    }
   },
 
   browserify: {
@@ -155,10 +132,9 @@ module.exports = {
     // See README.md for more info.
     bundleConfigs: [
       {
-        entries: src + '/js/main.coffee',
+        entries: src + '/js/main.js',
         dest: dest + '/js',
         outputName: 'main.js',
-        extensions: ['.coffee']
       }
     ]
   }
