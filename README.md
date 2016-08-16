@@ -4,18 +4,17 @@ Boilerplate / starting-point to create a Silverstripe production theme using a [
 
 Includes the following tools, tasks, and workflows:
 
-- [Browserify](http://browserify.org/) (with [browserify-shim](https://github.com/thlorenz/browserify-shim))
+- [Browserify](http://browserify.org/) as JavaScript module bundler
 - [Watchify](https://github.com/substack/watchify) (caching version of browserify for super fast rebuilds)
+- [ES2015](http://www.ecma-international.org/ecma-262/6.0/) syntax transpiled with [Babel](https://babeljs.io/) using [Babelify](https://github.com/babel/babelify) (with source maps!)
+- JavaScript linting using [ESLint](http://eslint.org/)
+- Shimming non common-js vendor code with other dependencies (like a jQuery plugin) with [browserify-shim](https://github.com/thlorenz/browserify-shim))
 - [SASS](http://sass-lang.com/) (super fast libsass with [source maps](https://github.com/sindresorhus/gulp-ruby-sass#sourcemap), and [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))
-- [CoffeeScript](http://coffeescript.org/) (with source maps!)
+- [Sass linting](https://github.com/sasstools/sass-lint)
 - [BrowserSync](http://browsersync.io) for live reloading and a static server
 - [Image optimization](https://www.npmjs.com/package/gulp-imagemin)
-- [Sass linting](https://github.com/sasstools/sass-lint)
-- [Javascript linting](http://jshint.com/)
-- [Coffeescript linting](http://www.coffeelint.org/)
+- Svg icon sprite generation using [gulp-svg-sprite](https://github.com/jkphl/gulp-svg-sprite), with `<symbol>` and `<use>` tags or as CSS Background image
 - Error handling in the console [and in Notification Center](https://github.com/mikaelbr/gulp-notify)
-- Shimming non common-js vendor code with other dependencies (like a jQuery plugin)
-- Svg icon sprite generation using [gulp-svg-sprite](https://github.com/jkphl/gulp-svg-sprite) inline or as background image.
 
 ## Dependencies
 
@@ -56,25 +55,27 @@ $ cd source_myThemeName
 $ npm install
 ```
 
-This runs through all dependencies listed in `package.json` and downloads them to a `node_modules` folder in your project directory.
+This runs through all dependencies listed in `package.json` and downloads them to the `node_modules` folder in your project directory.
 
 ## `gulp` commands
 
+Use `npm` to use the locally installed version of gulp in `./node_modules/bin` instead of the global version.
+
 ```
-$ gulp
+$ npm run gulp
 ```
 
 Will generate a dev version of the theme in `myTheme` folder (omitting the `source_`) part
 
 
 ```
-$ gulp watch
+$ npm run watch
 ```
 
 Will run the default task once, start a server and watch for file changes.
 
 ```
-$ gulp production
+$ npm run prod
 ```
 
 Will generate a production version of the theme by running the tests and compressing js & css. This is the folder that should go on the server.
@@ -87,16 +88,14 @@ Every time you run one of the commands the generated theme will be deleted! Don'
 
 ```bash
 myTheme_source/
-  gulp/         # all gulp tasks
-  src/          # all source files
-    icons/      # svg to be combined as a sprite
+  gulpfile.js/  # gulp tasks
+  src/
+    icons/      # SVG files to be included in he the sprite
     images/     # other images
-    js/         # js code, can be coffeescript or plain js (mix is possible)
-    sass/       # Sass code, scss and sass syntax possible
+    js/         # js code
+    sass/       # Sass code, SCSS and Sass indented syntax possible
     templates/  # Silverstripe templates
 ```
-
-Any additional folder to be moved to the production theme needs a new dedicated task e.g. `"moveFonts"` if you would need to move a `fonts/` folder.
 
 ## Configuration
 
@@ -104,24 +103,24 @@ All paths and plugin settings have been abstracted into a centralized config obj
 
 __Sprite config__
 
-Set what type of sprite generation you want to use:
+Set what type of sprite generation you want to use: (`symbol` is the default)
 
 ```javascript
 ...
 svgSprite: {
-  type: 'background' // set to 'inline' or 'background' (default)
+  type: 'symbol' // set to 'symbol' or 'css'
   ...
 }
 ...
 
 ```
 
-- __`'background'`__ creates a svg sprite that can be used as a background image in css.
-- __`'inline'`__ creates a svg image that can be used to reference icons with a `<use>` tag.
+- __`'symbol'`__ creates a SVG image that can be used to reference icons with the `<use>` tag.
+- __`'css'`__ creates a SVG sprite that can be used as a background image in css.
 
 __Generic move task__
 
-There is a generic task to move assets from the source directory without transformations, e.g. font files. To use is add the paths to the `move` array in the config file:
+There is a generic task to move assets from the source directory without transformations, e.g. font files. To use it add the paths to the `move` array in the config file:
 
 ```javascript
 ...
@@ -161,6 +160,8 @@ Scoping imports to a class will just be ignored:
 .myClass {}
 ```
 
+Also code imported this way will be at the top of the generated CSS file as sass moves all includes to the top of the file and the inlining has to happen after Sass compilation. There are no known issues with this at the time of writing.
+
 ## Shim a jQuery plugin to work with browserify
 
 ```js
@@ -185,7 +186,7 @@ Scoping imports to a class will just be ignored:
 }
 
 // use in main.js
-var plugin = require('plugin');
+import plugin from ('plugin');
 
 plugin();
 
@@ -208,9 +209,9 @@ If you have to require one of your own files a lot you can add it as an alias to
 }
 
 // use in main.js
-var myScript = require('myScript');
+import myScript from ('myScript');
 // instead of
-var myScript = require('./ui/myScript');
+import myScript from ('./ui/myScript');
 
 ```
 
@@ -272,7 +273,6 @@ __In your `gulp/config.js`__
 
 ## Known issues
 
-- `.coffeeelintignore` seems not to be working, be aware when changing the path to watch more than your `./src/js` directory.
 - The Sass files to be rendered as `.css` files need to have the extension `.sass` otherwise the compiler fails. Partials can be both `.sass` and `.scss`.
 
 ## Credits
