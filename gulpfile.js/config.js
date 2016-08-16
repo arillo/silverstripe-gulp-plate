@@ -80,30 +80,6 @@ module.exports = {
     options: './eslintrc.json'
   },
 
-  production: {
-    dest: dest,
-
-    cssSrc: dest + '/css/*.css',
-    jsSrc: dest + '/js/*.js',
-
-    cssDest: dest + '/css',
-    jsDest: dest + '/js',
-
-    cssCompressionOpts: {
-      safe: true,
-      mergeLonghand: false,
-      discardComments: {
-        removeAll: true
-      }
-    },
-
-    reportSrc: [
-      dest + '/css/*.css',
-      dest + '/js/*.js',
-      dest + '/images/**/*'
-    ],
-  },
-
   svgSprite: {
     src: src + '/icons',
     glob: '**/*.svg',
@@ -137,5 +113,29 @@ module.exports = {
         outputName: 'main.js',
       }
     ]
+  },
+
+  production: {
+    dest: dest,
+
+    cssSrc: dest + '/css/*.css',
+    jsSrc: dest + '/js/*.js',
+
+    cssDest: dest + '/css',
+    jsDest: dest + '/js',
+
+    cssCompressionOpts: {
+      safe: true,
+      mergeLonghand: false,
+      discardComments: {
+        removeAll: true
+      }
+    },
+
+    reportSrc: [
+      dest + '/css/*.css',
+      dest + '/js/*.js',
+      dest + '/images/**/*'
+    ],
   }
 };
