@@ -1,6 +1,6 @@
 # Silverstripe Gulp-plate
 
-Boilerplate / starting-point to create a Silverstripe production theme using a [gulp.js](http://gulpjs.com/) workflow.
+Boilerplate / starting-point to create a [SilverStripe](https://github.com/silverstripe) production theme using a [gulp.js](http://gulpjs.com/) workflow.
 
 Includes the following tools, tasks, and workflows:
 
@@ -16,7 +16,7 @@ Includes the following tools, tasks, and workflows:
 - Svg icon sprite generation using [gulp-svg-sprite](https://github.com/jkphl/gulp-svg-sprite), with `<symbol>` and `<use>` tags or as CSS Background image
 - Error handling in the console [and in Notification Center](https://github.com/mikaelbr/gulp-notify)
 
-Looking for the static version? Go [here](https://github.com/arillo/gulp-plate).
+Looking for the static version? [Look here](https://github.com/arillo/gulp-plate).
 
 ## Dependencies
 
