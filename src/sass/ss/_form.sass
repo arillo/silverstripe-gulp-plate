@@ -63,14 +63,13 @@
 
 .ss-form
   .message
-    color: $primary
+    &.bad,
+    &.required,
+    &.error
+      color: $color-error
 
-  .message.bad,
-  .message.error
-    color: $color-error
-
-  .message.success
-    color: $color-success
+    &.success
+      color: $color-success
 
 
 // Required field marker
@@ -83,7 +82,7 @@
     position: relative
 
     &::after
-      +pos(0.2rem 0, top left)
+      +pos(0.2rem 0, top right)
       +size(0.5rem)
       border-radius: 50%
       background-color: $color-error
@@ -93,4 +92,7 @@
 // Errors
 //============================================
 
-// @TODO default styles for error messages
+.ss-form
+  .field .message.required
+    display: block
+    padding-top: $space-quarter
