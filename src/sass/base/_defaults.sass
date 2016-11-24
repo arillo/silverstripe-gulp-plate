@@ -23,7 +23,7 @@
 // Root
 //============================================
 
-// 1. Remove gray overlay on links for ios
+// 1. Remove gray overlay on links for iOS
 // 2. Reset font-size to 10px for more straight forward calculations
 // 3. If this base changes keep in mind to change the `rem` custom
 //    function in the sprite configuration in the config.js file. !!
@@ -44,7 +44,7 @@ body
   font-size: $fs // 1.
   line-height: $lh // 1.
   background: $color-bg
-  color: $color-text
+  color: $color-txt
 
 
 // Vertical rhythm
@@ -60,9 +60,6 @@ p, table, blockquote, address, pre, iframe, form, figure
 a
   text-decoration: none
   color: inherit
-
-  &:hover
-    text-decoration: none
 
 
 // Headings
@@ -97,9 +94,9 @@ h6
 // Lists (enumeration)
 //============================================
 
-// Lists are reset by default as their are often
-// used structural elements. "text-list" styles
-// are loaceted at `module/_typography.sass`
+// Lists are reset by default as they are often
+// used as structural elements. "text-list" styles
+// are located in `module/_typography.sass`
 
 ul, ol
   margin: 0
@@ -162,7 +159,7 @@ hr
   display: block
   height: 0.1rem
   border: 0
-  border-top: 0.1rem solid rgba($gray-dust, 0.5)
+  border-top: 0.1rem solid rgba($color-txt, 0.5)
   margin: $space 0
   padding: 0
   clear: both
@@ -175,7 +172,7 @@ pre, code
   font-family: $font-mono
 
 pre
-  background-color: $gray-dust
+  background-color: rgba($black, 0.3)
   overflow: auto
   padding: $space-half
   line-height: inherit
@@ -188,7 +185,48 @@ pre
 
 blockquote
   padding-left: 1.5rem
-  border-left: 0.2rem solid $gray-dust
+  border-left: 0.2rem solid rgba($black, 0.3)
 
 q
   quotes: "\201C" "\201D" "\2018" "\2019"
+
+cite
+  font-style: normal
+
+
+// Forms
+//============================================
+
+input,
+optgroup,
+select,
+textarea
+  vertical-align: middle
+
+fieldset
+  margin: 0
+  padding: 0
+  border: 0
+  min-width: 0
+
+label
+  display: inline-block
+
+  &[for]
+    cursor: pointer
+
+
+// Buttons
+//============================================
+
+// Reset completely to facilitate styling.
+
+button
+  outline: 0
+  border: 0
+  padding: 0
+  background-color: transparent
+  line-height: inherit
+  vertical-align: baseline
+  color: inherit
+  cursor: pointer

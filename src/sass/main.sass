@@ -10,23 +10,15 @@
 @import "lib/vars"
 
 
-// Base 1
-//============================================
-
-@import "base/sprite"
-
-
-// Thirdparty
-//============================================
-
-@import "thirdparty/normalize"
-
-
 // Base
 //============================================
 
+// 1. Imported using the import `includePaths`
+//    Sass option in `gulpfile.js/config.js`.
+
+@import "base/sprite"
+@import "normalize" // 1.
 @import "base/defaults"
-@import "base/defaults-forms"
 
 
 // Layout
@@ -46,6 +38,7 @@
 // Module
 //============================================
 
+@import "module/form"
 @import "module/typography"
 @import "module/btn"
 @import "module/i"
