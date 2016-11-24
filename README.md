@@ -130,7 +130,7 @@ __Generic move task__
 
 There is a generic task to move assets from the source directory without transformations, e.g. font files. To use it add the paths to the `move` array in the config file:
 
-```javascript
+```js
 ...
 move: {
   {
@@ -202,7 +202,7 @@ Sass will always prefer Sass files (`.sass` or `.scss`) over css files, so when 
 }
 
 // use in main.js
-import plugin from ('plugin');
+import plugin from 'plugin';
 
 plugin();
 
@@ -225,9 +225,9 @@ If you have to require one of your own files a lot you can add it as an alias to
 }
 
 // use in main.js
-import myScript from ('myScript');
+import myScript from 'myScript';
 // instead of
-import myScript from ('./ui/myScript');
+import myScript from './ui/myScript';
 
 ```
 
