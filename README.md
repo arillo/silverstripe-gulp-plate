@@ -15,79 +15,80 @@ Includes the following tools, tasks, and work-flows:
 
 Looking for the static version? [Look here](https://github.com/arillo/gulp-plate).
 
-## Dependencies
+## Dependencies / Installation
 
-Install Node. If you use homebrew, do:
+Gulp-plate depends on the following technologies:
+
+- [node.js](http://nodejs.org) as local host environment for gulp (v. 7.5.0 or higher)*
+- [gulp](http://gulpjs.com/) as task-runner
+- [yarn](https://yarnpkg.com) as dependency manager
+
+*It is recommended to install node trough [nvm](https://github.com/creationix/nvm) (Node Version Manager).
+
+To get started:
 
 ```bash
-$ brew install node
-```
-
-Otherwise, you can download and install from [here](http://nodejs.org/download/). At the time of writing Node version 4+ is needed.
-
-Install Gulp globally:
-
-```
-$ npm install -g gulp
-```
-
-## Installation
-
-As this is a boilerplate the package should not be updated once you start creating your theme. Right now there is no scaffolding tool in place to start using it, therefor you need to clone it and delete the `.git` folder manually:
-
-**1.** Clone the repo to wherever you need to have it. Make sure to name the folder `source_myThemeName` (The **`source_`** part being the important bit).
-
-```
-$ git clone git@github.com:arillo/silverstripe-gulp-plate.git source_myThemeName
-```
-
-**2.** Delete the `.git` folder
-
-```
-$ rm -rf source_myThemeName/.git
-```
-
-**3.** Install the node modules.
-
-```
-$ cd source_myThemeName
-$ npm install
-```
-
-This runs through all dependencies listed in `package.json` and downloads them to the `node_modules` folder in your project directory.
-
-## `gulp` commands
-
-Use `npm` to use the locally installed version of gulp in `./node_modules/bin` instead of the global version.
-
-```
-$ npm run gulp
-```
-
-Will generate a dev version of the theme in `myTheme` folder (omitting the `source_`) part
-
-
-```
-$ npm run watch
-```
-
-Will run the default task once, start a server and watch for file changes.
-
-```
-$ npm run prod
-```
-
-Will generate a production version of the theme by compressing js & css. This is the folder that should go on the server.
-
-If you want to run any other gulp task just append the task name to the gulp command:
-
-```
-$ npm run gulp sprite
+# In myProject `themes` folder
+$ git clone https://github.com/arillo/gulp-plate source_myTheme
+$ cd source_myTheme
+$ rm -r .git    # Remove the link to the git repo
+$ yarn          # Install dependencies
 ```
 
 __Important:__
 
-Every time you run one of the commands the generated theme will be deleted! Don't make any changes in that directory.
+Prefix your theme name with `source_`. For a source folder named `source_myTheme` a production theme with the name `myTheme` will be created. After compiling your folder structure should look like this:
+
+```bash
+myProject
+#...
+  themes/
+    myTheme/ # Put this on the server after running the prod task. Should be ignored in `.gitignore`
+    source_myTheme/ # Holds your source files and gulp tasks
+```
+
+## Commands
+
+```bash
+# Equivalent
+$ yarn run build
+$ yarn run gulp
+$ yarn run g
+```
+
+Will run the default task and generate a dev version of the site in the `dist` folder.
+
+```bash
+# Equivalent
+$ yarn start
+$ yarn run watch
+$ yarn run w
+```
+
+Will run the default task once, start a server and watch for file changes.
+
+```bash
+# Equivalent
+$ yarn run production
+$ yarn run prod
+$ yarn run p
+```
+
+Will set `NODE_ENV='production'` and generate a production version of the site by compressing js, css & html. This is the folder that should go on the server.
+
+If you want to run any other gulp task just append the task name to the build /gulp command:
+
+```bash
+# Equivalent
+$ yarn run build sprite
+$ yarn run b sprite
+$ yarn run gulp sprite
+$ yarn run g sprite
+```
+
+__Important:__
+
+Every time you run build / watch / prod the generated theme will be deleted. Don't make any changes in that directory.
 
 ## Folder structure
 
@@ -104,59 +105,44 @@ source_myTheme/
 
 ## Configuration
 
-All paths and plugin settings have been abstracted into a centralized config object in `./gulpfile.js/config.js`. Adapt the paths and settings to the structure and needs of your project.
+All paths and plugin settings have been abstracted into a centralized file: `./gulpfile.js/config.js`. Adapt the paths and settings to the structure and needs of your project.
 
-__Sprite config__
+## SVG Sprite configuration
 
-Set what type of sprite generation you want to use: (`symbol` is the default)
+Set what type of sprite generation you want to use:
 
-```javascript
-...
-svgSprite: {
-  type: 'symbol' // set to 'symbol' or 'css'
-  ...
-}
-...
-
-```
-
-- __`'symbol'`__ creates a SVG image that can be used to reference icons with the `<use>` tag.
+- __`'symbol'`__ (default) creates a SVG image that can be used to reference icons with the `<use>` tag.
 - __`'css'`__ creates a SVG sprite that can be used as a background image in css.
 
-__Generic move task__
+The sprite creates an image with the name `sprite.svg` in `./dist/images/`. It also creates a Sass file named: `_sprite.scss` in `./src/sass/base/`.
 
-There is a generic task to move assets from the source directory without transformations, e.g. font files. To use it add the paths to the `move` array in the config file:
+The generated Sass files contains useful information about the sprite icons like the dimensions of each icon and, depending on your settings, the `background-position`. The file will change every time an icons is added, removed or changes, do not edit it manually. You can change the file by changing the templates in `./gulpfile.js/tpl/`.
 
-```js
-...
-move: {
-  {
-    src: "path/to/source-files"
-    dest: "path/to/destination"
-  }
-}
-...
-```
+## Static assets
 
-## Include external vendor css files
+To move static assets from the source directory without transformations, e.g. font files. Add the `src` and `dest` paths to the `static` array in the `config.js`
+
+## Sass
+
+Sass indented syntax is used by default. The main Sass files need to have a `.sass` extension, otherwise the compiler fails. Partials can be both `.sass` and `.scss`.
+
+### Include external vendor css files
 
 To include third-party styles in your css use the `includePaths` array in the `config.js` file:
 
 ```js
 // gulpfile.js/config.js
 
-{
+const sass = {
   //...
-  sass: {
-    settings: {
-      includePaths: [
-        './node_modules/normalize.css',
-        // put other paths here..
-      ]
-    }
+  settings: {
+    includePaths: [
+      './node_modules/normalize.css',
+      // put other paths here..
+    ],
   },
   //...
-}
+};
 ```
 
 Include it using a regular `@import`:
@@ -167,125 +153,178 @@ Include it using a regular `@import`:
 
 The Sass compiler will look for files with `.sass`, `.scss` and `.css` extension and include its contents in the generated file.
 
-If there happen to be multiple files with the same name but different extensions (e.g. `slick.css` and `slick.scss`) the compiler will throw an error. To circumvent this problem include the file extension in the `@import`:
+If there happen to be multiple files with the same name but different extensions (e.g. `style.css` and `style.scss`) the compiler will throw an error. To circumvent this problem include the file extension in the `@import`:
 
 ```sass
-@import "slick.scss"
+@import "style.scss"
 ```
 
 Sass will always prefer Sass files (`.sass` or `.scss`) over css files, so when you hit this problem you have to import the Sass file over the css file.
 
-## Shim a jQuery plugin to work with browserify
+### Sass-lint errors
+
+At the time of writing `sass-lint` fails when it encounters empty selectors. This is a [bug](https://github.com/sasstools/sass-lint/issues/820), it can be prevented by adding a comment (`//`) at the end of the file (does not allways work).
+
+## JavaScript
+
+The `./gulpfile.js/config.js` file contains the full webpack configuration (see the `js` variable). Feel free to alter is as needed. Keep in mind that the `babel-loader` should always be present as `eslint` will rely on it.
+
+There configuration will be slightly altered depending on the task you are running. When using the watch task, Javascript compilation will happen in memory, so no files are written to disk (`./dist/js/` will be empty) and `webpack-hot-middleware/client` will be injected in all bundles for live reloading to work. When building for production `webpack.optimize.UglifyJsPlugin` is used for minification. Take a look at `./gulpfile.js/util/getWebpackConfig.js` to see exactly what is happening and change it as needed.
+
+Here are some useful recipes to get you up and running:
+
+### Declare aliases for frequently required files
 
 ```js
-// package.json
+// gulpfile.js/config.js
 
-{
-...
-  "browser": {
-    // Path to your plugin
-    "plugin": "./src/js/vendor/jquery-plugin.js"
+const js = {
+  resolve: {
+    extensions: ['.js'],
+    alias: {
+      // Path relative to `context`
+      myModule: './myModule/myModule.js',
+    },
   },
-  "browserify-shim": {
-    // Shim it and declare dependencies
-    "plugin": {
-      "exports": "plugin",
-      "depends": [
-        "jquery:$"
-      ]
-    }
-  },
-...
-}
-
-// use in main.js
-import plugin from 'plugin';
-
-plugin();
-
+};
 ```
 
-## Declare aliases for frequently required files
-
-If you have to require one of your own files a lot you can add it as an alias to `"browser"` in the `package.json` file
-
 ```js
-// package.json
+// src/js/some-file.js
 
-{
-...
-  "browser": {
-    // Path to your plugin
-    "myScript": "./src/js/ui/my-script.js"
-  },
-...
-}
+import myModule from 'myModule';
 
-// use in main.js
-import myScript from 'myScript';
-// instead of
-import myScript from './ui/myScript';
-
+myModule();
 ```
 
-## Multiple JavaScript bundles & library sharing between bundles
+Docs: https://webpack.js.org/configuration/resolve/#resolve-alias
 
-When creating multiple JavaScript bundles it is important to include each library (e.g. jQuery) only once in your _main_ or _library_ bundle instead of every single bundle. To make this work follow the steps below to share `jquery` for example:
+### Shimming non CommonJs modules
 
-__In your `package.json`__
-
-```js
-{
-  //...
-  // Add the library you want to share to the `browser` object
-  // Look inside the package.json file of the library you want to share 
-  // to know which is the `main` file it exports.
-  "browser" : {
-    "jquery": "./node_modules/jquery/dist/jquery.js"
-  },
-  //...
-}
-```
-
-__In your `gulpfile.js/config.js`__
+#### jQuery plugin
 
 ```js
-{
+// gulpfile.js/config.js
+
+const webpack = require('webpack');
+//...
+const js = {
+  plugins: [
+    // Make jQuery global, expected by the plugin.
+    new webpack.ProvidePlugin({
+      'window.jQuery': 'jquery',
+    }),
+  ],
   //...
-  browserify: {
-    bundleConfigs: [
-      // This is the main bundle that contains the libraries
-      {
-        entries: src + '/js/main.js',
-        dest: dest + '/js',
-        outputName: 'main.js',
-        // This will include `jquery` in the main bundle weather it is uses
-        //`require('jquery')` itself or not, and make it available to the
-        // other bundles
-        require: ['jquery']
-      },
-
-      // This is another bundle that will be generated
-      // it uses `jquery` but does not include it itself
-      {
-        entries: src + '/js/other-bundle.js',
-        dest: dest + '/js',
-        outputName: 'other-bundle.js',
-        // This bit lets the bundle know that it has to get 
-        // jquery from somewhere else
-        external: ['jquery']
-
-      }
-    ]
+  resolve: {
+    // Add extensions to prevent linting errors.
+    extensions: ['.js', '.json'],
+    // Path from `node_modules`, where `myModule` is the module name.
+    alias: {
+      myModule: 'myModule/dist/myModule.js',
+    },
   }
-  //...
-}
+};
 ```
 
-## Known issues
+```js
+// src/js/main.js
 
-- The Sass files to be rendered as `.css` files need to have the extension `.sass` otherwise the compiler fails. Partials can be both `.sass` and `.scss`.
+import $ from 'jquery';
+import 'myModule';
+
+$('.js-selector').myModule();
+```
+
+#### Regular JavaScript module
+
+```js
+// gulpfile.js/config.js
+
+const js = {
+  //...
+  resolve: {
+    // Add extensions to prevent linting errors.
+    extensions: ['.js', '.json'],
+    // Path from `node_modules`, where `myModule` is the module name.
+    alias: {
+      myModule: 'myModule/dist/myModule.js',
+    },
+  },
+  module: {
+    rules: [
+      // ...
+      {
+        include: require.resolve('myModule/dist/myModule.js'),
+        loader: 'exports-loader?MyModule',
+      },
+    ],
+  },
+};
+```
+
+```js
+// src/js/main.js
+
+import $ from 'jquery';
+import MyModule from 'myModule';
+
+const myInstance = new MyModule();
+```
+
+Docs: https://webpack.js.org/guides/shimming/
+
+### Multiple JavaScript bundles & vendor code sharing
+
+To create multiple bundles add entires to `entry`
+
+```js
+// gulpfile.js/config.js
+
+const js = {
+  // ...
+  entry: {
+    main: ['./main.js'],
+    other: ['./someFile.js', './sotherOtherFile.js'],
+  },
+  // ...
+};
+```
+
+This will generate two bundles: `main.js` & `other.js`.
+
+If you do this it is probably a good idea to generate another bundle that contains all shared vendor code:
+
+```js
+// gulpfile.js/config.js
+
+const webpack = require('webpack');
+//...
+const js = {
+  // ...
+  entry: {
+    main: ['./main.js'],
+    other: ['./someFile.js', './sotherOtherFile.js'],
+    // List vendor modules here:
+    vendor: ['jquery', 'svg4everybody'],
+  },
+  // ...
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor', // Specify the common bundle's name
+    }),
+  ],
+  // ...
+};
+```
+
+Docs: https://webpack.js.org/guides/code-splitting-libraries/
+
+## Roadmap
+
+- [ ] Research Tree-shaking with webpack and implement if possible
+- [x] Evaluate if es-lint should be used through a webpack loader instead of gulp
 
 ## Credits
 
-- SilverStripe-Gulp-plate is based on https://github.com/greypants/gulp-starter
+Gulp-plate is based on https://github.com/greypants/gulp-starter
