@@ -1,8 +1,17 @@
-'use strict';
+/* eslint import/no-extraneous-dependencies: 0, arrow-body-style: 0 */
 
-var gulp        = require('gulp');
-var runSequence = require('run-sequence');
+const gulp        = require('gulp');
+const runSequence = require('run-sequence');
 
-gulp.task('default', ['clean'], function(cb){
-  runSequence(['sprite', 'images'], ['eslint', 'sasslint', 'sass', 'html', 'move', 'browserify'], cb);
+gulp.task('default', ['clean'], (callback) => {
+  // Set environment
+  global.env = global.env || 'build';
+
+  const tasks = ['sprite', ['sass', 'html', 'images', 'assets']];
+
+  if (global.env === 'build') {
+    tasks.push('webpack');
+  }
+
+  runSequence(...tasks, callback);
 });

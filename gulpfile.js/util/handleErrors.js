@@ -1,17 +1,51 @@
-'use strict';
+/* eslint import/no-extraneous-dependencies: 0 */
 
-var notify = require('gulp-notify');
+const notify = require('gulp-notify');
+const gutil  = require('gulp-util');
 
-module.exports = function() {
+// Taken from here https://github.com/mikaelbr/gulp-notify/issues/81#issuecomment-268852774
 
-  var args = Array.prototype.slice.call(arguments);
+function reportError(error) {
+  // Console error
+  let report = '\n';
+  const chalk = gutil.colors.red.bold;
+  let notifyMessage = '';
 
-  // Send error to notification center with gulp-notify
-  notify.onError({
-    title: 'Compile Error',
-    message: '<%= error %>'
-  }).apply(this, args);
+  if (error.plugin) {
+    report += `${chalk('PLUGIN:')} [' ${error.plugin} ']\n`;
+  }
 
-  // Keep gulp from hanging on this task
-  this.emit('end');
-};
+  if (error.message) {
+    report += `${chalk('ERROR:')} ${error.message}\n`;
+  }
+
+  if (!error.message) {
+    report += `${chalk('ERROR:')} ${error.toString()}\n`;
+  }
+
+  gutil.log(gutil.colors.red(report));
+
+  // Notification
+  if (error.line && error.column) {
+    notifyMessage += `LINE ${error.line}:${error.column} -- `;
+  }
+
+  if (error.file) {
+    notifyMessage += `FILE ${error.file}`;
+  }
+
+  notify({
+    title: `FAIL: ${error.plugin}`,
+    message: `${notifyMessage} See console.`,
+    sound: false,
+  }).write(error);
+
+  // System beep
+  if (global.env !== 'watch') {
+    gutil.beep();
+  }
+
+  if (typeof this.emit === 'function') { this.emit('end'); }
+}
+
+module.exports = reportError;

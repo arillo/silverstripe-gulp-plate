@@ -1,11 +1,12 @@
-'use strict';
+/* eslint import/no-extraneous-dependencies: 0 */
 
-var gulp    = require('gulp');
-var del     = require('del');
-var config  = require('../config');
+const gulp    = require('gulp');
+const del     = require('del');
+const dest    = require('../config').dest;
 
-gulp.task('clean', function(cb){
-  del(config.destFolder, {dot: true, force: true}).then(paths => {
-    cb();
-  });
+gulp.task('clean', (callback) => {
+  del(dest, { dot: true, force: true })
+    .then(() => {
+      callback();
+    });
 });

@@ -1,9 +1,9 @@
-'use strict';
+/* eslint import/no-extraneous-dependencies: 0 */
 
-var gulp        = require('gulp');
-var runSequence = require('run-sequence');
+const gulp        = require('gulp');
+const runSequence = require('run-sequence');
 
-// Run this to compress all the things!
-gulp.task('production', function(){
-  runSequence('default', ['minifyCss', 'uglifyJs'], 'size-report');
+gulp.task('production', (callback) => {
+  global.env = 'prod';
+  runSequence('default', 'webpack', 'report', callback);
 });

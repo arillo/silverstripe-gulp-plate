@@ -1,26 +1,19 @@
-'use strict';
-/* bundleLogger
-   ------------
-   Provides gulp style logs to the bundle method in browserify.js
-*/
+/* eslint import/no-extraneous-dependencies: 0 */
 
-var gutil        = require('gulp-util');
-var prettyHrtime = require('pretty-hrtime');
-var startTime;
+const gutil        = require('gulp-util');
+const prettifyTime = require('./prettifyTime');
 
-module.exports = {
-  start: function(filepath) {
-    startTime = process.hrtime();
-    gutil.log('Bundling', gutil.colors.green(filepath) + '...');
-  },
+module.exports = (err, stats) => {
+  if (err) { throw new gutil.PluginError('webpack', err); }
 
-  watch: function(bundleName) {
-    gutil.log('Watching files required by', gutil.colors.yellow(bundleName));
-  },
+  let statColor = stats.compilation.warnings.length < 1 ? 'green' : 'yellow';
 
-  end: function(filepath) {
-    var taskTime = process.hrtime(startTime);
-    var prettyTime = prettyHrtime(taskTime);
-    gutil.log('Bundled', gutil.colors.green(filepath), 'in', gutil.colors.magenta(prettyTime));
+  if (stats.compilation.errors.length > 0) {
+    statColor = 'red';
+    gutil.log(gutil.colors[statColor](stats));
+  } else {
+    const compileTime = prettifyTime(stats.endTime - stats.startTime);
+    gutil.log(gutil.colors[statColor](stats));
+    gutil.log('Compiled with', gutil.colors.cyan('webpack'), 'in', gutil.colors.magenta(compileTime));
   }
 };
