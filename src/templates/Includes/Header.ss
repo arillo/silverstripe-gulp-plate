@@ -12,7 +12,7 @@
       <p>Current Locale: $LocaleInformation($CurrentLocale).Alias</p>
       <ul>
         <% loop Locales %>
-          <li><a href="$Link.ATT" class="$LinkingMode"<% if $LinkingMode != 'invalid' %> rel="alternate" hreflang="$LocaleRFC1766"<% end_if %>>$Alias</a></li>
+          <li><a href="$Link.ATT" class="$LinkingMode"<% if $LinkingMode != current %> rel="alternate" hreflang="$LocaleRFC1766"<% end_if %>>$Alias</a></li>
         <% end_loop %>
       </ul>
     <% end_if %>
