@@ -1,9 +1,7 @@
-'use strict';
+const gulp = require('gulp');
+const runSequence = require('run-sequence');
 
-var gulp        = require('gulp');
-var runSequence = require('run-sequence');
-
-// Run this to compress all the things!
-gulp.task('production', function(){
-  runSequence('default', ['minifyCss', 'uglifyJs'], 'size-report');
+gulp.task('production', callback => {
+  global.env = 'prod';
+  runSequence('default', 'webpack', 'report', callback);
 });

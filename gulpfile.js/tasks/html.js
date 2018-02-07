@@ -1,13 +1,17 @@
-'use strict';
+const gulp = require('gulp');
+const changed = require('gulp-changed');
+const config = require('../config').html;
+const htmlmin = require('gulp-htmlmin');
+const gulpif = require('gulp-if');
+const browserSync = require('browser-sync');
 
-var gulp          = require('gulp');
-var changed       = require('gulp-changed');
-var config        = require('../config').html;
-var browserSync   = require('browser-sync');
+gulp.task('html', () => {
+  const isProd = global.env === 'prod';
 
-gulp.task('html', function() {
-  return gulp.src(config.src)
+  return gulp
+    .src(config.src)
     .pipe(changed(config.dest))
+    .pipe(gulpif(isProd, htmlmin(config.compression)))
     .pipe(gulp.dest(config.dest))
-    .pipe(browserSync.reload({stream:true}));
+    .pipe(browserSync.reload({ stream: true }));
 });

@@ -1,43 +1,25 @@
-'use strict';
+const svgSymbols = require('gulp-svg-symbols');
+const gulp = require('gulp');
+const config = require('../config').sprite;
+const handleErrors = require('../util/handleErrors');
+const rename = require('gulp-rename');
+const svgo = require('gulp-svgo');
 
-var gulp          = require('gulp');
-var svgSprite     = require('gulp-svg-sprite');
-var del           = require('del');
-var config        = require('../config').svgSprite;
-var plumber       = require('gulp-plumber');
-var handleErrors  = require('../util/handleErrors');
-
-
-var spriteTemplate = config.type === 'symbol' ? config.templateSymbol : config.templateCss;
-
-var spriteOptions = {
-  mode: {
-    [config.type]: {
-      layout: 'horizontal',
-      sprite: config.spriteImgName,
-      dest: '.',
-      render: {
-        scss: {
-          template: spriteTemplate,
-          dest: config.sassDest
-        }
-      }
-    }
-  },
-  variables: config.templateVars
-};
-
-// Clean
-gulp.task('sprite:clean', function(cb){
-  del([config.dest + '/images/sprite*.svg'], {dot: true}).then(paths => {
-    cb();
-  });
+gulp.task('sprite:data', () => {
+  return gulp
+    .src(config.src)
+    .pipe(svgSymbols({ templates: [config.template] }))
+    .on('error', handleErrors)
+    .pipe(gulp.dest(config.sassDest));
 });
 
-gulp.task('sprite', ['sprite:clean'], function (cb) {
-  return gulp.src(config.glob, {cwd: config.src})
-    .pipe(plumber())
-    .pipe(svgSprite(spriteOptions))
+gulp.task('sprite', ['sprite:data'], () => {
+  return gulp
+    .src(config.src)
+    .pipe(svgSymbols({ templates: ['default-svg'] }))
     .on('error', handleErrors)
+    .pipe(rename(config.spriteName))
+    .pipe(svgo({ plugins: [{ removeViewBox: false }, { cleanupIDs: false }] }))
     .pipe(gulp.dest(config.dest));
 });
+

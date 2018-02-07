@@ -12,9 +12,7 @@
       <% include Footer %>
     </div>
 
-    <% if $CurrentMember %>
-      <% include DesignHelper %>
-    <% end_if %>
+    <% include DesignHelper %>
 
     $SiteConfig.GoogleAnalytics
     <%-- Include script via SilverStripe for better cache busting --%>

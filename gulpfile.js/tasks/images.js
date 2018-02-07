@@ -1,15 +1,12 @@
-'use strict';
+const changed = require('gulp-changed');
+const gulp = require('gulp');
+const svgo = require('gulp-svgo');
+const config = require('../config').images;
 
-var changed       = require('gulp-changed');
-var gulp          = require('gulp');
-var imagemin      = require('gulp-imagemin');
-var config        = require('../config').images;
-var browserSync   = require('browser-sync');
-
-gulp.task('images', function() {
-  return gulp.src(config.src)
-    .pipe(changed(config.dest)) // Ignore unchanged files
-    .pipe(imagemin()) // Optimize
-    .pipe(gulp.dest(config.dest))
-    .pipe(browserSync.reload({stream:true}));
+gulp.task('images', () => {
+  return gulp
+    .src(config.src)
+    .pipe(changed(config.dest))
+    .pipe(svgo({ plugins: [{ removeViewBox: false }, { cleanupIDs: false }] }))
+    .pipe(gulp.dest(config.dest));
 });

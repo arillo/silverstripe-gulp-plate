@@ -1,11 +1,9 @@
-'use strict';
+const gulp = require('gulp');
+const del = require('del');
+const dest = require('../config').dest;
 
-var gulp    = require('gulp');
-var del     = require('del');
-var config  = require('../config');
-
-gulp.task('clean', function(cb){
-  del(config.destFolder, {dot: true, force: true}).then(paths => {
-    cb();
+gulp.task('clean', callback => {
+  del(dest, { dot: true, force: true }).then(() => {
+    callback();
   });
 });

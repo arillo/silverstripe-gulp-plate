@@ -1,8 +1,15 @@
-'use strict';
+const gulp = require('gulp');
+const runSequence = require('run-sequence');
 
-var gulp        = require('gulp');
-var runSequence = require('run-sequence');
+gulp.task('default', ['clean'], callback => {
+  // Set environment
+  global.env = global.env || 'build';
 
-gulp.task('default', ['clean'], function(cb){
-  runSequence(['sprite', 'images'], ['eslint', 'sasslint', 'sass', 'html', 'move', 'browserify'], cb);
+  const tasks = ['sprite', ['sass', 'html', 'images', 'assets']];
+
+  if (global.env === 'build') {
+    tasks.push('webpack');
+  }
+
+  runSequence(...tasks, callback);
 });
