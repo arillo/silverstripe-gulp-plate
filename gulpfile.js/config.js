@@ -8,6 +8,11 @@ const themeFolder = path.basename(dir).replace('source_', '');
 const src = path.resolve(dir, 'src');
 const dest = path.resolve(dir, '..', themeFolder);
 
+let proxy = 'php7.test';
+if (fs.existsSync(__dirname + '/config-local.js')) {
+  proxy = require('./config-local.js').proxy;
+}
+
 // Generic task to move static assets.
 // Files are not watched for changes.
 // All all the paths you need.
@@ -20,7 +25,7 @@ const assets = [
 
 const browserSync = {
   port: 9000,
-  proxy: `http://php7.test/${projectFolder}`,
+  proxy: `http://${proxy}/${projectFolder}`,
   notify: false,
   open: false,
 };
