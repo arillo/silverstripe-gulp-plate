@@ -89,7 +89,7 @@ $ yarn run g sprite
 
 **Important:**
 
-Every time you run build / watch / prod the generated theme will be deleted. Don't make any changes in that directory.
+Every time you run build / watch / prod the generated theme directory will be deleted. Don't make any changes in that directory.
 
 ## Folder structure
 
@@ -121,14 +121,9 @@ module.exports = {
 
 ## SVG Sprite configuration
 
-Set what type of sprite generation you want to use:
-
-* **`'symbol'`** (default) creates a SVG image that can be used to reference icons with the `<use>` tag.
-* **`'css'`** creates a SVG sprite that can be used as a background image in css.
-
 The sprite creates an image with the name `sprite.svg` in `./dist/images/`. It also creates a Sass file named: `_sprite.scss` in `./src/sass/base/`.
 
-The generated Sass files contains useful information about the sprite icons like the dimensions of each icon and, depending on your settings, the `background-position`. The file will change every time an icons is added, removed or changes, do not edit it manually. You can change the file by changing the templates in `./gulpfile.js/tpl/`.
+The generated Sass files contains useful information about the sprite icons like the dimensions of each icon. The file will change every time an icon is added, removed or changed, do not edit it manually. You can change the file by changing the template in `./gulpfile.js/tpl/_sprite.scss`.
 
 ## Static assets
 
