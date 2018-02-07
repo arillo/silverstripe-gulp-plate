@@ -2,125 +2,117 @@
 // Global variables
 //============================================
 
-
 // Colors
 //============================================
 
 // 1. To prevent linting errors these
 //    values are stored in variables.
 
-$black:           #000; // 1.
-$white:           #fff; // 1.
+$black: #000; // 1.
+$white: #fff; // 1.
 
-$primary:         #00f;
+$primary: #00f;
 
 // $gray-powder:     #f7f7f7;
 // $gray-dust:       #ddd;
 // $gray-concrete:   #767676;
 // $gray-space:      #111;
 
-$color-txt:       lighten($black, 13.5%);
-$color-bg:        $white;
-$color-error:     #ed331a;
-$color-success:   #2fa714;
-
+$color-txt: lighten($black, 13.5%);
+$color-bg: $white;
+$color-error: #ed331a;
+$color-success: #2fa714;
 
 // Dimensions
 //============================================
 
-$space:                     2.4rem; // 24px
-$space-quarter:             $space * 0.25;
-$space-third:               decimal-round($space / 3, 1);
-$space-half:                $space * 0.5;
-$space-twoThird:            decimal-round(($space / 3) * 2, 1);
-$space-threeQuarter:        decimal-round($space * 0.75, 1);
-$space-plusQuarter:         $space + $space-quarter;
-$space-plusThird:           $space + $space-third;
-$space-plusHalf:            $space + $space-half;
-$space-plusTwoThird:        $space + $space-twoThird;
-$space-plusThreeQuarter:    $space + $space-threeQuarter;
-$space-double:              $space * 2;
-$space-triple:              $space * 3;
-
+$space: 24px; // 24px
+$space-quarter: $space * 0.25;
+$space-third: round($space / 3);
+$space-half: $space * 0.5;
+$space-twoThird: round(($space / 3) * 2);
+$space-threeQuarter: round($space * 0.75);
+$space-plusQuarter: $space + $space-quarter;
+$space-plusThird: $space + $space-third;
+$space-plusHalf: $space + $space-half;
+$space-plusTwoThird: $space + $space-twoThird;
+$space-plusThreeQuarter: $space + $space-threeQuarter;
+$space-double: $space * 2;
+$space-triple: $space * 3;
 
 // Typography
 //============================================
 
-$font:      "Helvetica Neue", Arial, sans-serif;
+$font: 'Helvetica Neue', Arial, sans-serif;
 $font-mono: monospace, monospace;
-$fs:        1.6rem;
-$lh:        ($space / $fs);
+$fs: 16px;
+$lh: ($space / $fs);
 
 $fs-h1: (
-  "": (2.8rem, 1.15),
-  "sm": (4rem, 1),
+  '': (30px, 1.15),
+  'sm': (40px, 1)
 );
 
 $fs-h2: (
-  "": (2.8rem, 1.2),
-  "sm": 4rem,
+  '': (28px, 1.2),
+  'sm': 36px
 );
 
 $fs-h3: (
-  "": (2rem, 1.2),
-  "sm": 2.6rem,
+  '': (20px, 1.2),
+  'sm': 26px
 );
 
 $fs-h4: $fs-h3;
 $fs-h5: $fs-h3;
 $fs-h6: $fs-h3;
 
+// Motion
+//============================================
+
+$motion: 0.2s;
 
 // Layout
 //============================================
 
 // XS
-$layout-gutter-xs: 1.6rem;
-$layout-width-xs:  41.6rem;
+$layout-gutter-xs: 16px;
+$layout-width-xs: 416px;
 
 // SM
-$layout-gutter-sm: 2rem;
-$layout-width-sm:  72.8rem;
+$layout-gutter-sm: 20px;
+$layout-width-sm: 728px;
 
 // MD
-$layout-gutter-md: 2.2rem;
-$layout-width-md:  96.6rem;
+$layout-gutter-md: 22px;
+$layout-width-md: 966px;
 
 // LG
-$layout-gutter-lg: 3rem;
-$layout-width-lg:  129rem;
-
+$layout-gutter-lg: 30px;
+$layout-width-lg: 1290px;
 
 // Breakpoints
 //============================================
 
-// 1. Breakpoints are defined in em's, they are not affected by the
-//    reset on the html element. They use 16px (browser default)
-//    as a base for calculations. Keep in mind when creating new breakpoints.
-
-// 2. 1px in em (1 / 16 = 0.0625em) to create max-width queries.
-
-// 3. Full media query expresions for use in modules.
-
-$breakpoints: ( // 1.
-  "xs": em($layout-width-xs, 1.6rem),
-  "sm": em($layout-width-sm, 1.6rem),
-  "md": em($layout-width-md, 1.6rem),
-  "lg": em($layout-width-lg, 1.6rem),
+$breakpoints: (
+  'sm': $layout-width-sm,
+  'md': $layout-width-md,
+  'lg': $layout-width-lg
 );
 
-$px-in-em: 0.0625em; // 2.
+$mq-sm: '(min-width: #{map-get($breakpoints, 'sm')})';
+$mq-md: '(min-width: #{map-get($breakpoints, 'md')})';
+$mq-lg: '(min-width: #{map-get($breakpoints, 'lg')})';
 
-$bp-xs:       "(min-width: #{map-get($breakpoints, 'xs')})"; // 3.
-$bp-sm:       "(min-width: #{map-get($breakpoints, 'sm')})"; // 3.
-$bp-md:       "(min-width: #{map-get($breakpoints, 'md')})"; // 3.
-$bp-lg:       "(min-width: #{map-get($breakpoints, 'lg')})"; // 3.
+$mq-sm-down: '(max-width: #{map-get($breakpoints, 'sm') - 1px})';
+$mq-md-down: '(max-width: #{map-get($breakpoints, 'md') - 1px})';
+$mq-lg-down: '(max-width: #{map-get($breakpoints, 'lg') - 1px})';
 
-$bp-xs-down:  "(max-width: #{map-get($breakpoints, 'xs') - $px-in-em})"; // 3.
-$bp-sm-down:  "(max-width: #{map-get($breakpoints, 'sm') - $px-in-em})"; // 3.
-$bp-md-down:  "(max-width: #{map-get($breakpoints, 'md') - $px-in-em})"; // 3.
-$bp-lg-down:  "(max-width: #{map-get($breakpoints, 'lg') - $px-in-em})"; // 3.
-
+$mqs: (
+  'sm': $mq-sm,
+  'md': $mq-md,
+  'lg': $mq-lg
+);
 
 // Grid
 //============================================
@@ -128,122 +120,116 @@ $bp-lg-down:  "(max-width: #{map-get($breakpoints, 'lg') - $px-in-em})"; // 3.
 $grid-columns: 12;
 
 $grid-config-xs: (
-  "name": "",
-  "cols": $grid-columns,
-  "gutter": $layout-gutter-xs,
-  "bp": false,
-  "off": false,
-  "pull": false,
-  "push": false,
-  "clear": 2
+  'name': '',
+  'cols': $grid-columns,
+  'gutter': $layout-gutter-xs,
+  'mq': false,
+  'off': false,
+  'pull': false,
+  'push': false,
+  'clear': 2
 );
 
 $grid-config-sm: (
-  "name": "sm",
-  "cols": $grid-columns,
-  "gutter": $layout-gutter-sm,
-  "bp": $bp-sm,
-  "off": true,
-  "pull": true,
-  "push": true,
-  "clear": 2
+  'name': 'sm',
+  'cols': $grid-columns,
+  'gutter': $layout-gutter-sm,
+  'mq': $mq-sm,
+  'off': true,
+  'pull': true,
+  'push': true,
+  'clear': 2
 );
 
 $grid-config-md: (
-  "name": "md",
-  "cols": $grid-columns,
-  "gutter": $layout-gutter-md,
-  "bp": $bp-md,
-  "off": true,
-  "pull": true,
-  "push": true,
-  "clear": 3 4
+  'name': 'md',
+  'cols': $grid-columns,
+  'gutter': $layout-gutter-md,
+  'mq': $mq-md,
+  'off': true,
+  'pull': true,
+  'push': true,
+  'clear': 3 4
 );
 
 $grid-config-lg: (
-  "name": "lg",
-  "cols": $grid-columns,
-  "gutter": $layout-gutter-lg,
-  "bp": $bp-lg,
-  "off": true,
-  "pull": true,
-  "push": true,
-  "clear": 3 4
+  'name': 'lg',
+  'cols': $grid-columns,
+  'gutter': $layout-gutter-lg,
+  'mq': $mq-lg,
+  'off': true,
+  'pull': true,
+  'push': true,
+  'clear': 3 4
 );
 
 // Grid sizes for print
 $grid-config-print: (
-  "name": "print",
-  "cols": $grid-columns,
-  "gutter": $layout-gutter-md,
-  "bp": "print",
-  "off": true,
-  "pull": true,
-  "push": true,
-  "clear": 2 3
+  'name': 'print',
+  'cols': $grid-columns,
+  'gutter': $layout-gutter-md,
+  'mq': 'print',
+  'off': true,
+  'pull': true,
+  'push': true,
+  'clear': 2 3
 );
 
-
-// Dimension Utility
+// Utilities
 //============================================
 
-$dimension-utility-sizes: (
-  "1":                  0.1rem,
-  "2":                  0.2rem,
-  "3":                  0.3rem,
-  "4":                  0.4rem,
-  "":                   $space,
-  "quarter":            $space-quarter,
-  "third":              $space-third,
-  "half":               $space-half,
-  "twoThird":           $space-twoThird,
-  "threeQuarter":       $space-threeQuarter,
-  "plusQuarter":        $space-plusQuarter,
-  "plusThird":          $space-plusThird,
-  "plusHalf":           $space-plusHalf,
-  "plusTwoThird":       $space-plusTwoThird,
-  "plusThreeQuarter":   $space-plusThreeQuarter,
-  "double":             $space-double,
-  "triple":             $space-triple,
-  "0": 0,
+$background-utility-variants: (
+  'primary': $primary,
+  'black': $black
 );
 
-$dimension-utility-config-xs: (
-  "name": "",
-  "pull": true,
-  "push": true,
-  "padd": true,
-  "bp": false,
-
-  "sizes": $dimension-utility-sizes
+$display-utility-variants: (
+  'none': none,
+  'blk': block,
+  'inl': inline,
+  'ibl': inline-block,
+  'flx': flex
 );
 
-$dimension-utility-config-sm: (
-  "name": "sm",
-  "pull": true,
-  "push": true,
-  "padd": true,
-  "bp": $bp-sm,
-
-  "sizes": $dimension-utility-sizes
+$width-utility-variants: (
+  '100\\%': 100%,
+  '90\\%': 90%,
+  '200': 200px,
+  '100': 100px
 );
 
-$dimension-utility-config-md: (
-  "name": "md",
-  "pull": true,
-  "push": true,
-  "padd": true,
-  "bp": $bp-md,
-
-  "sizes": $dimension-utility-sizes
+$opacity-utility-variants: (
+  '100': 1,
+  '90': 0.9,
+  '80': 0.8,
+  '70': 0.7,
+  '60': 0.6,
+  '50': 0.5,
+  '40': 0.4,
+  '30': 0.3,
+  '20': 0.2,
+  '10': 0.1,
+  '0': 0
 );
 
-$dimension-utility-config-lg: (
-  "name": "lg",
-  "pull": true,
-  "push": true,
-  "padd": true,
-  "bp": $bp-lg,
-
-  "sizes": $dimension-utility-sizes
+$dimension-utility-variants: (
+  '1': 1px,
+  '2': 2px,
+  '3': 3px,
+  '4': 4px,
+  '': $space,
+  'quarter': $space-quarter,
+  'third': $space-third,
+  'half': $space-half,
+  'twoThird': $space-twoThird,
+  'threeQuarter': $space-threeQuarter,
+  'plusQuarter': $space-plusQuarter,
+  'plusThird': $space-plusThird,
+  'plusHalf': $space-plusHalf,
+  'plusTwoThird': $space-plusTwoThird,
+  'plusThreeQuarter': $space-plusThreeQuarter,
+  'double': $space-double,
+  'triple': $space-triple,
+  '0': 0,
+  'auto': auto
 );

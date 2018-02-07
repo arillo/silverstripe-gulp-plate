@@ -11,19 +11,6 @@
   text-transform: uppercase
 
 
-// Text Align
-//============================================
-
-.u-ta-lft
-  text-align: left
-
-.u-ta-rgt
-  text-align: right
-
-.u-ta-center
-  text-align: center
-
-
 // Text Color
 //============================================
 
@@ -32,6 +19,16 @@
 
 .u-c-txt
   color: $color-txt
+
+
+// Text Color Hover
+//============================================
+
+.u-c-primary\:hover
+  transition: color $motion
+
+  &:hover
+    color: $primary
 
 
 // Font Weight
