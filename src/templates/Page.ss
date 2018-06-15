@@ -3,7 +3,6 @@
   <% include Head %>
 
   <body>
-    <% include BrowserWarning %>
     <div class="l-wrap">
       <% include Header %>
       <main>
@@ -14,9 +13,13 @@
 
     <% include DesignHelper %>
 
-    $SiteConfig.GoogleAnalytics
-    <%-- Include script via SilverStripe for better cache busting --%>
+    <%-- This script tag is for watching via webpack as js files are virtual --%>
+    <%-- Will be removed for `prod` or `build` and required via Page.php --%>
+    <!--<RemoveProd>-->
+    <% include DesignHelper %>
     <script src="$ThemeDir/js/main.js"></script>
+    <!--</RemoveProd>-->
+    <% include BrowserWarning %>
   </body>
 
 </html>

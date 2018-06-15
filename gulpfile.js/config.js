@@ -51,8 +51,6 @@ const sass = {
   options: {
     outputStyle: 'expanded',
     indentedSyntax: true,
-    // Include paths to thirdparty styles
-    includePaths: ['./node_modules/normalize.css'],
   },
 
   prefix: 'last 3 versions',
@@ -89,12 +87,13 @@ const js = {
     filename: '[name].js',
     path: `${dest}/js`,
     // Path on server
-    publicPath: `/${projectFolder}/themes/${themeFolder}/js`,
+    // publicPath: `/${projectFolder}/themes/${themeFolder}/js`, // SS3
+    publicPath: `/${projectFolder}/resources/themes/${themeFolder}/js`, // SS4
   },
   resolve: {
     alias: {
-      utils: path.resolve(__dirname, '../src/js/utils'),
-      modules: path.resolve(__dirname, '../src/js/modules'),
+      utils: `${src}/js/utils`,
+      modules: `${src}/js/modules`,
     },
   },
   module: {
