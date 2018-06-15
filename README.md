@@ -137,7 +137,7 @@ Sass indented syntax is used by default. The main Sass files need to have a `.sa
 
 To include third-party styles in your css use include them in the `main.sass` file:
 
-```css
+```sass
 // main.sass
 
 @import url('../../node_modules/normalize.css/normalize.css');
