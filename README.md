@@ -149,7 +149,15 @@ Beware that Sass will move `@import url(...)` statements to the top of the gener
 
 ### Sass-lint errors
 
-At the time of writing `sass-lint` fails when it encounters empty selectors. This is a [bug](https://github.com/sasstools/sass-lint/issues/820), it can be prevented by adding a comment (`//`) at the end of the file (does not allways work).
+At the time of writing `sass-lint` fails when it encounters empty selectors. This is a [bug](https://github.com/sasstools/sass-lint/issues/456), it can be prevented by adding a indented comment `//` after the empty selector:
+
+```sass
+.mySelector
+  //
+
+.mySelector_child
+  text-align: center
+```
 
 ## JavaScript
 

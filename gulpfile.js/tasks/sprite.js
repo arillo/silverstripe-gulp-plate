@@ -22,4 +22,3 @@ gulp.task('sprite', ['sprite:data'], () => {
     .pipe(svgo({ plugins: [{ removeViewBox: false }, { cleanupIDs: false }] }))
     .pipe(gulp.dest(config.dest));
 });
-
