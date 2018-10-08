@@ -111,7 +111,7 @@ const webpack = {
 };
 
 const report = {
-  src: [sass.dest, js.output.path, images.dest],
+  src: [sass.dest, webpack.output.path, images.dest],
 };
 
 module.exports = {
