@@ -1,5 +1,5 @@
 <div class="l-container">
-  <h1>$Title</h1>
+  <h1><% if $ErrorCode %>$ErrorCode - <% end_if %>$Title</h1>
 
   <% if $Content %>
     <div class="typography">

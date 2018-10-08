@@ -4,15 +4,15 @@ Boilerplate / starting-point to create a [SilverStripe](https://github.com/silve
 
 Includes the following tools, tasks, and work-flows:
 
-* [Webpack](https://webpack.js.org/) as JavaScript module bundler
-* [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware) for live reloading (in memory compilation for faster rebuilds while developing)
-* [ES2015](http://www.ecma-international.org/ecma-262/6.0/) syntax transpiled with [Babel](https://babeljs.io/)
-* [ESLint](http://eslint.org/) for JavaScript linting
-* [Prettier](https://prettier.io/) for JavaScript code formatting
-* [SASS](http://sass-lang.com/) compiled with libsass, [source maps](https://github.com/sindresorhus/gulp-ruby-sass#sourcemap), [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer) and [Sass linting](https://github.com/sasstools/sass-lint)
-* [BrowserSync](http://browsersync.io) for live reloading and static server
-* [svgo](https://github.com/svg/svgo) for SVG compression.
-* [gulp-svg-symbols](https://github.com/Hiswe/gulp-svg-symbols) to generate a SVG icon sprite with `<symbol>` & `<use>` tags
+- [Webpack](https://webpack.js.org/) as JavaScript module bundler
+- [webpack-dev-middleware](https://github.com/webpack/webpack-dev-middleware) for live reloading (in memory compilation for faster rebuilds while developing)
+- [ES2015](http://www.ecma-international.org/ecma-262/6.0/) syntax transpiled with [Babel](https://babeljs.io/)
+- [ESLint](http://eslint.org/) for JavaScript linting
+- [Prettier](https://prettier.io/) for JavaScript code formatting
+- [SASS](http://sass-lang.com/) compiled with libsass, [source maps](https://github.com/sindresorhus/gulp-ruby-sass#sourcemap), [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer) and [Sass linting](https://github.com/sasstools/sass-lint)
+- [BrowserSync](http://browsersync.io) for live reloading and static server
+- [svgo](https://github.com/svg/svgo) for SVG compression.
+- [gulp-svg-symbols](https://github.com/Hiswe/gulp-svg-symbols) to generate a SVG icon sprite with `<symbol>` & `<use>` tags
 
 Looking for the static version? [Look here](https://github.com/arillo/gulp-plate).
 
@@ -20,9 +20,9 @@ Looking for the static version? [Look here](https://github.com/arillo/gulp-plate
 
 Gulp-plate depends on the following technologies:
 
-* [node.js](http://nodejs.org) as local host environment for gulp (v. 7.5.0 or higher) [1]
-* [gulp](http://gulpjs.com/) as task-runner
-* [yarn](https://yarnpkg.com) as dependency manager
+- [node.js](http://nodejs.org) as local host environment for gulp (v. 7.5.0 or higher) [1]
+- [gulp](http://gulpjs.com/) as task-runner
+- [yarn](https://yarnpkg.com) as dependency manager
 
 [1] It is recommended to install node trough [nvm](https://github.com/creationix/nvm) (Node Version Manager).
 
@@ -117,6 +117,20 @@ By default browserSync will use the proxy domain `php7.test` to modify the domai
 module.exports = {
   proxy: 'local-domain.dev',
 };
+```
+
+## Symlink theme folders (SilverStripe 4)
+
+Theme folders need to be symlinked in the `public/resources/themes/<your-theme-name>/` folder for the theme to work, run:
+
+```
+cd public/resources/themes/<your-theme-name>/
+```
+
+and link each folder in the theme (replace `css` with the folder name you want to link):
+
+```
+ln -s ../../../../themes/<your-theme-name>/css css
 ```
 
 ## SVG Sprite configuration
@@ -316,7 +330,7 @@ Docs: https://webpack.js.org/guides/code-splitting-libraries/
 
 ## Roadmap
 
-* [ ] Research Tree-shaking with webpack and implement if possible
+- [ ] Research Tree-shaking with webpack and implement if possible
 
 ## Credits
 

@@ -53,19 +53,12 @@ const sass = {
     indentedSyntax: true,
   },
 
-  prefix: 'last 3 versions',
-
   // Css Selectors that should be removed from your css.
   // useful to remove unneeded thirdparty styles.
   remove: [],
 
   compression: {
-    safe: true,
-    core: true,
-    autoprefixer: false,
-    discardComments: {
-      removeAll: true,
-    },
+    preset: 'default',
   },
 };
 
@@ -77,7 +70,7 @@ const sprite = {
   template: `${dir}/gulpfile.js/tpl/_sprite.scss`,
 };
 
-const js = {
+const webpack = {
   context: `${src}/js`,
   entry: {
     // Path relative to `context`
@@ -104,6 +97,9 @@ const js = {
         use: [
           {
             loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+            },
           },
           {
             loader: 'eslint-loader',
@@ -129,5 +125,5 @@ module.exports = {
   html,
   sprite,
   report,
-  js,
+  webpack,
 };
