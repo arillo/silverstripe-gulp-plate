@@ -1,0 +1,70 @@
+//============================================
+// Spacing utilities
+//============================================
+
+// Spacing utilities
+//============================================
+
+// Generate helper classes following this pattern
+// .u-<property>-<direction>-<amount>@<media-query>
+
+// Properties
+// push = margin
+// pull = negative margin
+// padd = padding
+
+// Directions
+// top = top
+// btm = bottom
+// lft = left
+// rgt = right
+// vert = vertical - top bottom
+// horz = horizontal - left right
+// '' (nothing) = all sides
+
+// Amounts and media-queries
+// See `$spacing-utility-variants` in
+// `base/_vars.scss` for configurations
+
+$spacing-utility-config-xs: (
+  'name': '',
+  'pull': true,
+  'push': true,
+  'padd': true,
+  'mq': false,
+  'sizes': $spacing-utility-variants
+);
+
+$spacing-utility-config-sm: (
+  'name': 'sm',
+  'pull': true,
+  'push': true,
+  'padd': true,
+  'mq': $mq-sm,
+  'sizes': $spacing-utility-variants
+);
+
+$spacing-utility-config-md: (
+  'name': 'md',
+  'pull': true,
+  'push': true,
+  'padd': true,
+  'mq': $mq-md,
+  'sizes': $spacing-utility-variants
+);
+
+$spacing-utility-config-lg: (
+  'name': 'lg',
+  'pull': true,
+  'push': true,
+  'padd': true,
+  'mq': $mq-lg,
+  'sizes': $spacing-utility-variants
+);
+
+@include generate-spacing-helpers(
+  $spacing-utility-config-xs,
+  $spacing-utility-config-sm,
+  $spacing-utility-config-md,
+  $spacing-utility-config-lg
+);

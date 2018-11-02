@@ -1,0 +1,33 @@
+//============================================
+// Editor
+//============================================
+
+// Silverstripe WYSIWYG Editor styles
+
+// CSS Imports
+//============================================
+
+@import url('../../node_modules/normalize.css/normalize.css');
+
+// Library
+//============================================
+
+@import 'lib/lib';
+@import 'lib/vars';
+
+// Base
+//============================================
+
+@import 'base/defaults';
+
+// Module
+//============================================
+
+@import 'module/typography';
+
+// Custom styles
+//============================================
+
+body {
+  padding: 10px;
+}

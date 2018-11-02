@@ -45,12 +45,11 @@ const images = {
   dest: `${dest}/images`,
 };
 
-const sass = {
-  src: `${src}/sass/**/*.{sass,scss}`,
+const scss = {
+  src: `${src}/scss/**/*.{sass,scss}`,
   dest: `${dest}/css`,
   options: {
     outputStyle: 'expanded',
-    indentedSyntax: true,
   },
 
   // Css Selectors that should be removed from your css.
@@ -65,7 +64,7 @@ const sass = {
 const sprite = {
   src: `${src}/icons/**/*.svg`,
   dest: `${dest}/images`,
-  sassDest: `${src}/sass/base`,
+  scssDest: `${src}/scss/base`,
   spriteName: 'sprite.svg',
   template: `${dir}/gulpfile.js/tpl/_sprite.scss`,
 };
@@ -111,7 +110,7 @@ const webpack = {
 };
 
 const report = {
-  src: [sass.dest, webpack.output.path, images.dest],
+  src: [scss.dest, webpack.output.path, images.dest],
 };
 
 module.exports = {
@@ -119,7 +118,7 @@ module.exports = {
   dest,
   src,
   browserSync,
-  sass,
+  scss,
   assets,
   images,
   html,

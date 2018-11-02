@@ -1,0 +1,26 @@
+//============================================
+// Color
+//============================================
+
+// Color
+//============================================
+
+$config: (
+  'name': 'c',
+  'prop': 'color',
+  'variants': $color-utility-variants
+);
+
+@include utility-class($config);
+
+// Text Color Hover
+//============================================
+
+$config: (
+  'name': 'c',
+  'prop': 'color',
+  'variants': $color-utility-variants,
+  'hover': true
+);
+
+@include utility-class($config);
