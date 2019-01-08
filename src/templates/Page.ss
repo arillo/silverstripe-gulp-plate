@@ -3,22 +3,23 @@
   <% include Head %>
 
   <body>
-    <div class="l-wrap">
-      <% include Header %>
-      <main>
-        $Layout
-      </main>
-      <% include Footer %>
-    </div>
+    <% include Header %>
+    <main>
+      $Layout
+    </main>
+    <% include Footer %>
 
     <% include DesignHelper %>
 
     <%-- This script tag is for watching via webpack as js files are virtual --%>
     <%-- Will be removed for `prod` or `build` and required via Page.php --%>
-    <!--<RemoveProd>-->
+    <!--<Prod>-->
+    <% require javascript('$ThemeDir/js/main.js') %>
+    <!--</Prod>-->
+    <!--<Dev>-->
     <% include DesignHelper %>
     <script src="$ThemeDir/js/main.js"></script>
-    <!--</RemoveProd>-->
+    <!--</Dev>-->
     <% include BrowserWarning %>
   </body>
 
