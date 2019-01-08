@@ -51,31 +51,24 @@ myProject
 ## Commands
 
 ```bash
-# Equivalent
 $ yarn run build
-$ yarn run gulp
-$ yarn run g
 ```
 
-Will run the default task and generate a dev version of the site in the `dist` folder.
+Run the default task and generate a dev version of the site in the `dist` folder.
 
 ```bash
 # Equivalent
 $ yarn start
 $ yarn run watch
-$ yarn run w
 ```
 
-Will run the default task once, start a server and watch for file changes. See below to learn how to customize the proxy.
+Run the default task once, start a server and watch for file changes. See below to learn how to customize the proxy.
 
 ```bash
-# Equivalent
-$ yarn run production
 $ yarn run prod
-$ yarn run p
 ```
 
-Will set `NODE_ENV='production'` and generate a production version of the site by compressing js, css & html. This is the folder that should go on the server.
+Set `NODE_ENV='production'` and generate a production version of the site by compressing js, css & html. This is the folder that should go on the server.
 
 If you want to run any other gulp task just append the task name to the build /gulp command:
 
