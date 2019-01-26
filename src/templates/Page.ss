@@ -9,8 +9,6 @@
     </main>
     <% include Footer %>
 
-    <% include DesignHelper %>
-
     <%-- This script tag is for watching via webpack as js files are virtual --%>
     <%-- Will be removed for `prod` or `build` and required via Page.php --%>
     <!--<Prod>-->
