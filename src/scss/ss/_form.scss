@@ -1,0 +1,179 @@
+//============================================
+// SilverStripe Forms
+//============================================
+
+// Block
+//============================================
+
+.ss-form {
+  form {
+    @extend .form !optional;
+  }
+}
+
+// Fields
+//============================================
+
+.ss-form {
+  .field {
+    @extend .form_field !optional;
+  }
+
+  .field.optionset li,
+  .field.checkbox {
+    @extend .form_field-inline !optional;
+  }
+}
+
+// Fields
+//============================================
+
+.ss-form {
+  label.left {
+    @extend .form_label-block !optional;
+  }
+}
+
+.ss-form {
+  .field.optionset li label,
+  .field.checkbox label.right {
+    @extend .form_label-inline !optional;
+  }
+}
+
+// Inputs
+//============================================
+
+.ss-form {
+  select,
+  textarea,
+  input.text {
+    @extend .form_input !optional;
+  }
+}
+
+// Textareas
+//============================================
+
+.ss-form {
+  textarea {
+    @extend .form_input-textarea !optional;
+  }
+}
+
+// Checkboxes & Radiobuttons
+//============================================
+
+.ss-form {
+  input.checkbox {
+    @extend .form_radio !optional;
+  }
+
+  input.radio {
+    @extend .form_radio !optional;
+  }
+}
+
+// Checkboxes & Radiobuttons
+//============================================
+
+.ss-form {
+  select {
+    @extend .form_input-select !optional;
+  }
+}
+
+// Actions
+//============================================
+
+.ss-form {
+  .btn-toolbar,
+  .Actions {
+    @extend .form_actions !optional;
+  }
+
+  button.action,
+  input.action {
+    @extend .form_action !optional;
+  }
+}
+
+// User definde form
+//============================================
+
+.ss-form {
+  .middleColumn + label.right {
+    margin-top: $space-quarter;
+    font-size: 90%;
+    opacity: 0.7;
+  }
+
+  .field + .FormHeading {
+    padding-top: $space * 1.2;
+    margin-bottom: $space-threeQuarter;
+  }
+}
+
+// Messages
+//============================================
+
+.ss-form {
+  .message {
+    margin-bottom: $space;
+
+    &.bad,
+    &.required,
+    &.error {
+      color: $color-error;
+    }
+
+    &.success {
+      color: $color-success;
+    }
+  }
+}
+
+// Required field marker
+//============================================
+
+.ss-form {
+  .checkbox.requiredField label.right,
+  .requiredField label.left {
+    padding-right: 9px;
+    position: relative;
+
+    &::after {
+      @include pos(2px 0, top right);
+      @include size(5px);
+
+      border-radius: 50%;
+      background-color: $color-error;
+      content: '';
+    }
+  }
+}
+
+// Errors
+//============================================
+
+.ss-form {
+  .field .message.required {
+    display: block;
+    padding-top: $space-quarter;
+  }
+}
+
+// Errors in checkbox field
+//============================================
+
+.ss-form {
+  .field.checkbox.requiredField {
+    display: flex;
+    flex-wrap: wrap;
+
+    .message.required {
+      order: 3;
+      min-width: 100%;
+    }
+  }
+}

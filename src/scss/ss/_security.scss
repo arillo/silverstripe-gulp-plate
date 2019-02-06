@@ -1,0 +1,32 @@
+//============================================
+// Security
+//============================================
+
+.security_box {
+  max-width: 480px;
+  padding: 50px $space-threeQuarter;
+  margin: 0 auto;
+}
+
+.security_content {
+  border-top: 1px solid lighten($black, 80%);
+  border-bottom: 1px solid lighten($black, 80%);
+  padding-top: 30px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.security_box {
+  .Actions {
+    padding-top: 10px;
+  }
+
+  #MemberLoginForm_LoginForm_Remember_Holder,
+  #Remember {
+    display: none;
+  }
+
+  #ForgotPassword {
+    padding-top: $space;
+  }
+}
