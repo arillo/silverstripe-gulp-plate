@@ -1,9 +1,9 @@
-//============================================
+// ============================================
 // Grid system
-//============================================
+// ============================================
 
 // Config example
-//============================================
+// ============================================
 
 // $config: (
 //   'name': 'xs',
@@ -16,9 +16,9 @@
 // );
 
 // Main mixin
-//============================================
+// ============================================
 
-@mixin grid($configs...) {
+@mixin grid($grid-config) {
   // Default Classes
   .g-row {
     display: flex;
@@ -32,7 +32,7 @@
     position: relative;
   }
 
-  @each $config in $configs {
+  @each $config in $grid-config {
     // Get config
     $name: map-get($config, 'name');
     $cols: map-get($config, 'cols');
@@ -81,7 +81,7 @@
 }
 
 // Helper mixin
-//============================================
+// ============================================
 
 @mixin grid-helper($config, $type, $prop, $val0) {
   $name: map-get($config, 'name');

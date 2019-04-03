@@ -1,12 +1,12 @@
 // ============================================
-// Font size
+// Line Height
 // ============================================
 
 $config: (
-  'name': 'fs',
-  'prop': 'font-size',
+  'name': 'lh',
+  'prop': 'line-height',
   'mqs': $mqs,
-  'variants': $font-size-utility-variants
+  'variants': $line-height-utility-variants,
 );
 
 @include utility-class($config);
