@@ -231,7 +231,7 @@
 }
 
 // Iframe
-// ============================================
+//============================================
 
 .typography {
   iframe {
@@ -245,7 +245,90 @@
 // Images general
 .typography {
   img {
-    @include size(auto, auto);
+    width: auto;
+    height: auto;
     max-width: 100%;
+  }
+}
+
+// Images & caption containers
+.typography {
+  .captionImage,
+  > p img,
+  > img {
+    &.center,
+    &.leftAlone,
+    &.left,
+    &.right {
+      width: auto !important;
+      max-width: 100%;
+    }
+
+    &.center {
+      margin: 0 auto;
+      display: block;
+    }
+
+    @include mq($mq-sm) {
+      &.left {
+        float: left;
+        margin-right: 1em;
+        margin-bottom: $lh * 1em;
+      }
+
+      &.right {
+        float: right;
+        margin-left: 1em;
+        margin-bottom: $lh * 1em;
+      }
+    }
+  }
+}
+
+// Media a.k.a. Videos
+.typography {
+  .embed {
+    width: auto !important;
+
+    &::before {
+      padding-bottom: (9 / 16) * 100%;
+    }
+  }
+
+  img.embed {
+    &::before {
+      display: none;
+    }
+  }
+}
+
+// Caption containers
+.typography {
+  .captionImage {
+    margin-bottom: $lh * 1em;
+
+    &.center,
+    &.leftAlone,
+    &.left,
+    &.right {
+      margin-bottom: $lh * 1em;
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+// Captions
+.typography {
+  .caption {
+    font-size: 90%;
+  }
+
+  .media + .caption,
+  img + .caption {
+    padding-top: $space-third;
+    margin: 0;
   }
 }
