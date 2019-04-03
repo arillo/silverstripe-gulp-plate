@@ -4,10 +4,10 @@ const fs = require('fs');
 const dir = process.env.PWD;
 
 const projectFolder = path.basename(path.resolve(dir, '../../'));
-const themeFolder = path.basename(dir).replace('source_', '');
+const themeDir = path.basename(dir).replace('source_', '');
 
 const src = path.resolve(dir, 'src');
-const dest = path.resolve(dir, '..', themeFolder);
+const dest = path.resolve(dir, '..', themeDir);
 
 let proxy = 'php7.test';
 if (fs.existsSync(__dirname + '/config-local.js')) {
@@ -34,6 +34,7 @@ const browserSync = {
 const html = {
   src: `${src}/templates/**/*.*`,
   dest: `${dest}/templates`,
+  themeDir,
 
   compression: {
     collapseWhitespace: true,
@@ -79,8 +80,8 @@ const webpack = {
     filename: '[name].js',
     path: `${dest}/js`,
     // Path on server
-    // publicPath: `/${projectFolder}/themes/${themeFolder}/js`, // SS3
-    publicPath: `/${projectFolder}/resources/themes/${themeFolder}/js`, // SS4
+    // publicPath: `/${projectFolder}/themes/${themeDir}/js`, // SS3
+    publicPath: `/${projectFolder}/resources/themes/${themeDir}/js`, // SS4
   },
   resolve: {
     alias: {
